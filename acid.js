@@ -64,8 +64,9 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
+/*
 scene.add ( cube );
-
+*/
 camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
@@ -257,38 +258,74 @@ spotLight.target.position.set(0,0,-0.5);
 scene.add(spotLight);
 //---------------------------------------------------------------
 //Control Scheme
+
 var t = 0.001;
+
+/*
+Mousetrap.bind('up',function(){
+    forward = true;
+},onkeydown);
+Mousetrap.bind('up',function(){
+    forward = false;
+},onkeyup);
+
+Mousetrap.bind('down',function(){
+    backward = true;
+},onkeypress);
+Mousetrap.bind('down',function(){
+    backward = false;
+},onkeyup);
+
+Mousetrap.bind('left',function(){
+    left = true;
+},onkeydown);
+Mousetrap.bind('left',function(){
+    left = false;
+},onkeyup);
+
+Mousetrap.bind('right',function(){
+    right = true;
+},onkeydown);
+Mousetrap.bind('right',function(){
+    right = false;
+},onkeyup);
+
+Mousetrap.bind('space',function(){
+    spinToggle = !spinToggle;
+})
+
+Mousetrap.bind('up',function(){
+    
+},onkeyup)
+*/
+
 var spinToggle = false;
+var forward = false;
+var backward = false;
+var left = false;
+var right = false;
+
 
 document.addEventListener('keydown', function(event) {
     //Forward
     if (event.keyCode == 38) {
-        camera.position.z -= Math.cos(t)*2;
-        camera.position.x -= Math.sin(t)*2;
-        //event.keyCode = 0;
-        
+        forward = true;
     }
     //Backwards
     if (event.keyCode == 40) {
-        camera.position.z += Math.cos(t)*2;
-        camera.position.x += Math.sin(t)*2;
-        //event.keyCode = 0;
+        backward = true;
     }
     //Left
     if (event.keyCode == 37) {
-        t += 0.08;
-        //camera.rotation.y += 0.0001;
+        left = true;
     }
     //Right
     if (event.keyCode == 39) {
-        t -= 0.08;
-        //camera.rotation.y -= 0.0001;
+        right = true;
     }
-    
     //Spacebar, toggles auto-rotate
     if (event.keyCode == 32) {
         spinToggle = !spinToggle;
-        
     }
     
     //Bound the camera's z and x position to the shape of the
@@ -299,6 +336,27 @@ document.addEventListener('keydown', function(event) {
     camera.position.x = Math.min(Math.max(camera.position.x,-600),600);
     //Math.min(Math.max(number,1),20);
 }, true);
+
+document.addEventListener('keyup', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        forward = false;
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        backward = false;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        left = false;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        right = false;
+    }
+}, true);
+
+
 //------------------------------------------
 
 
@@ -316,6 +374,20 @@ var animate = function () {
 
 	if (spinToggle === true){
         t += 0.005;
+    }
+    if (forward === true){
+        camera.position.z -= Math.cos(t)*1.2;
+        camera.position.x -= Math.sin(t)*1.2;
+    }
+    if (backward === true){
+        camera.position.z += Math.cos(t)*1.2;
+        camera.position.x += Math.sin(t)*1.2;
+    }
+    if (left === true){
+        t += 0.04;
+    }
+    if (right === true){
+        t -= 0.04;
     }
     
     camera.rotation.y = t;
