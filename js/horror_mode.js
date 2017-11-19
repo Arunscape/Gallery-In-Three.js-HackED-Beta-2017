@@ -93,57 +93,57 @@ document.body.appendChild( cssRenderer.domElement );
 
 var wall_link = function(i, wall, gifLink){
 
-	var gif_element = document.createElement( 'video' );
-	gif_element.setAttribute("autoplay", true);
-	gif_element.setAttribute("loop", true);
-	gif_element.width = 100;
-	gif_element.height = 100;
-	var gif_cssObject = new THREE.CSS3DObject( gif_element );
-	gif_cssObject.position = cssObject.position;
+    var gif_element = document.createElement( 'video' );
+    gif_element.setAttribute("autoplay", true);
+    gif_element.setAttribute("loop", true);
+    gif_element.width = 100;
+    gif_element.height = 100;
+    var gif_cssObject = new THREE.CSS3DObject( gif_element );
+    gif_cssObject.position = cssObject.position;
 
 
-	if (wall){
+    if (wall){
 
-		gif_cssObject.position.z = 100;
+        gif_cssObject.position.z = 100;
 
-	} else {
+    } else {
 
-		gif_cssObject.position.z = -100;
+        gif_cssObject.position.z = -100;
 
-	}
-
-
-
-	gif_cssObject.position.x = i;
-	gif_cssObject.rotation = cssObject.rotation;
-	cssScene.add(gif_cssObject);
+    }
 
 
-	gif_element.src = gifLink;
+
+    gif_cssObject.position.x = i;
+    gif_cssObject.rotation = cssObject.rotation;
+    cssScene.add(gif_cssObject);
 
 
-	var ye = new THREE.Color(0x883300);
-
-	var darkMat = new THREE.MeshStandardMaterial( {color: ye} );
-	var planeGeo = new THREE.PlaneGeometry(110, 210);
-	var gif_planeMesh = new THREE.Mesh( planeGeo, darkMat );
-
-	darkMat.side = THREE.DoubleSide;
-
-	gif_planeMesh.position.x = i;
-
-	if (wall){
-
-		gif_planeMesh.position.z = 99;
-
-	} else {
-
-		gif_planeMesh.position.z = -99;
-
-	}
+    gif_element.src = gifLink;
 
 
-	scene.add(gif_planeMesh);
+    var ye = new THREE.Color(0x883300);
+
+    var darkMat = new THREE.MeshStandardMaterial( {color: ye} );
+    var planeGeo = new THREE.PlaneGeometry(110, 210);
+    var gif_planeMesh = new THREE.Mesh( planeGeo, darkMat );
+
+    darkMat.side = THREE.DoubleSide;
+
+    gif_planeMesh.position.x = i;
+
+    if (wall){
+
+        gif_planeMesh.position.z = 99;
+
+    } else {
+
+        gif_planeMesh.position.z = -99;
+
+    }
+
+
+    scene.add(gif_planeMesh);
 }
 
 //=============================================================//
@@ -152,16 +152,16 @@ var wall_link = function(i, wall, gifLink){
 
 var links = [
 
-	//'https://thumbs.gfycat.com/AliveUnpleasantHerring-max-1mb.gif',
-	//'https://thumbs.gfycat.com/AliveUnpleasantHerring-max-1mb.gif',
-	'https://zippy.gfycat.com/SeveralPowerlessLcont.webm',
-	'https://zippy.gfycat.com/SeveralPowerlessLcont.webm',
-	'https://zippy.gfycat.com/MintyHardtofindCob.webm',
-	'https://zippy.gfycat.com/SplendidPeskyCat.webm',
-	'https://thumbs.gfycat.com/SinglePepperyGreendarnerdragonfly-mobile.mp4',
-	'https://thumbs.gfycat.com/FrightenedSilkyHalibut-mobile.mp4',
-	'https://giant.gfycat.com/PrestigiousWeirdConure.webm',
-	'https://zippy.gfycat.com/AcclaimedNaiveFennecfox.webm'
+    //'https://thumbs.gfycat.com/AliveUnpleasantHerring-max-1mb.gif',
+    //'https://thumbs.gfycat.com/AliveUnpleasantHerring-max-1mb.gif',
+    'https://zippy.gfycat.com/SeveralPowerlessLcont.webm',
+    'https://zippy.gfycat.com/SeveralPowerlessLcont.webm',
+    'https://zippy.gfycat.com/MintyHardtofindCob.webm',
+    'https://zippy.gfycat.com/SplendidPeskyCat.webm',
+    'https://thumbs.gfycat.com/SinglePepperyGreendarnerdragonfly-mobile.mp4',
+    'https://thumbs.gfycat.com/FrightenedSilkyHalibut-mobile.mp4',
+    'https://giant.gfycat.com/PrestigiousWeirdConure.webm',
+    'https://zippy.gfycat.com/AcclaimedNaiveFennecfox.webm'
 
 ];
 
@@ -170,38 +170,38 @@ var oo;
 for (let j = 0; j < 8; j++) {
 
 
-	oo = Math.floor(j * (Math.random() * 320)) + (j * 100);
+    oo = Math.floor(j * (Math.random() * 320)) + (j * 100);
 
-	console.log(oo);
+    console.log(oo);
 
-	if (oo % 2 === 0){
+    if (oo % 2 === 0){
 
-		wall_link(oo, true, links[j]);
+        wall_link(oo, true, links[j]);
 
-	} else {
+    } else {
 
-		wall_link(oo, false, links[j]);
+        wall_link(oo, false, links[j]);
 
-	}
+    }
 
 }
 
 for (let j = 0; j < 8; j++) {
 
 
-	oo = -1 * (Math.floor(j * (Math.random() * 320)) + (j * 100));
+    oo = -1 * (Math.floor(j * (Math.random() * 320)) + (j * 100));
 
-	console.log(oo);
+    console.log(oo);
 
-	if (oo % 2 === 0){
+    if (oo % 2 === 0){
 
-		wall_link(oo, true, links[j]);
+        wall_link(oo, true, links[j]);
 
-	} else {
+    } else {
 
-		wall_link(oo, false, links[j]);
+        wall_link(oo, false, links[j]);
 
-	}
+    }
 
 }
 
@@ -215,22 +215,22 @@ var pillar_geo = new THREE.CylinderGeometry( 10, 10, 400, 9);
 
 var makePillar = function( i ){
 
-	let pillar_mesh1 = new THREE.Mesh( pillar_geo, pillar_mat );
-	let pillar_mesh2 = new THREE.Mesh( pillar_geo, pillar_mat );
+    let pillar_mesh1 = new THREE.Mesh( pillar_geo, pillar_mat );
+    let pillar_mesh2 = new THREE.Mesh( pillar_geo, pillar_mat );
 
-	var ye = Math.floor(0xffffff * Math.random());
+    var ye = Math.floor(0xffffff * Math.random());
 
-	var pillar_mat = new THREE.MeshStandardMaterial( { color: ye } );
-	pillar_mat.recieveShadow = true;
+    var pillar_mat = new THREE.MeshStandardMaterial( { color: ye } );
+    pillar_mat.recieveShadow = true;
 
-	pillar_mesh1.position.z =  105;
-	pillar_mesh2.position.z = -105;
+    pillar_mesh1.position.z =  105;
+    pillar_mesh2.position.z = -105;
 
-	pillar_mesh1.position.x = 70 + i * 150;
-	pillar_mesh2.position.x = 70 + i * 150;
+    pillar_mesh1.position.x = 70 + i * 150;
+    pillar_mesh2.position.x = 70 + i * 150;
 
-	scene.add(pillar_mesh1);
-	scene.add(pillar_mesh2);
+    scene.add(pillar_mesh1);
+    scene.add(pillar_mesh2);
 
 }
 //--------------------------------------------------------------
@@ -331,6 +331,39 @@ sound.play();
 //------------------------------------------
 
 
+var meh = new THREE.AudioListener();
+camera.add(meh);
+var creepy_musique = new THREE.Audio(meh);
+
+scene.add(creepy_musique);
+
+var load_creepy_musique = new THREE.AudioLoader();
+
+load_creepy_musique.load(
+    // resource URL
+    '../ree.mp3',
+    // Function when resource is loaded
+    function ( audioBuffer ) {
+        // set the audio object buffer to the loaded object
+        creepy_musique.setBuffer( audioBuffer );
+
+        // play the audio
+        createElement.play();
+    },
+    // Function called when download progresses
+    function ( xhr ) {
+        console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+    },
+    // Function called when download errors
+    function ( xhr ) {
+        console.log( 'An error happened' );
+    }
+);
+
+
+//------------------------------------------
+
+
 
 
 
@@ -345,7 +378,7 @@ var white = new THREE.Color( 0xffffff);
 
 var animate = function () {
 
-	requestAnimationFrame( animate );
+    requestAnimationFrame( animate );
 
     if (spinToggle === true){
         t += 0.005;
@@ -368,35 +401,35 @@ var animate = function () {
     camera.rotation.y = t;
 
 
-	t3 += 0.1 * Math.random();
-	t4 += 0.1 * Math.random();
-	hT += 0.1 * Math.random();
+    t3 += 0.1 * Math.random();
+    t4 += 0.1 * Math.random();
+    hT += 0.1 * Math.random();
 
-	if ( Math.floor(t3) % 10 === 0 ) {
+    if ( Math.floor(t3) % 10 === 0 ) {
 
-		aLight2.intensity = 1;
+        aLight2.intensity = 1;
 
-	}
+    }
 
-	else {
+    else {
 
-		aLight2.intensity = 0;
+        aLight2.intensity = 0;
 
-	}
+    }
 
 
-	// erratic flicker of the flash light
-	if ( Math.floor(t4) % Math.floor(Math.random() * 5) === 0 ) {
+    // erratic flicker of the flash light
+    if ( Math.floor(t4) % Math.floor(Math.random() * 5) === 0 ) {
 
-		spotLight.intensity = 3;
+        spotLight.intensity = 3;
 
-	}
+    }
 
-	else if ( Math.floor(t4) % Math.floor(Math.random() * 3) === 0 ) {
+    else if ( Math.floor(t4) % Math.floor(Math.random() * 3) === 0 ) {
 
-		spotLight.intensity = 0;
+        spotLight.intensity = 0;
 
-	}
+    }
 
     var listener = new THREE.AudioListener();
     camera.add( listener );
@@ -406,25 +439,25 @@ var animate = function () {
 
     var audioLoader = new THREE.AudioLoader();
 
-	// shake camera
+    // shake camera
 
-	if (Math.floor(hT) % 30 === 0 && Math.floor(hT) !== 0) {
-		camera.position.z = 80 * Math.random();
-		camera.position.x = 80 * Math.random();
-		camera.position.y = 10 * Math.random();
-		aLight2.intensity = 3;
-		aLight2.color = red;
-	}
-	
-	else {
-		aLight2.intensity = 0;
-		aLight2.color = white;
-	}
+    if (Math.floor(hT) % 30 === 0 && Math.floor(hT) !== 0) {
+        camera.position.z = 80 * Math.random();
+        camera.position.x = 80 * Math.random();
+        camera.position.y = 10 * Math.random();
+        aLight2.intensity = 3;
+        aLight2.color = red;
+    }
+    
+    else {
+        aLight2.intensity = 0;
+        aLight2.color = white;
+    }
 
-	ay.add(addColor);
+    ay.add(addColor);
 
-	renderer.render( scene, camera );
-	cssRenderer.render( cssScene, camera );
+    renderer.render( scene, camera );
+    cssRenderer.render( cssScene, camera );
 };
 
 animate();
