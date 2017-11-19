@@ -39,12 +39,12 @@ scene.add( aLight );
 
 //--------------------------------------------------------------
 
-var geometry = new THREE.BoxGeometry( 20, 10, 10 );
+var geometry = new THREE.CylinderGeometry( 10, 10, 5, 7 );
 var material = new THREE.MeshStandardMaterial( {color: 0xffffff} );
 material.side = THREE.DoubleSide;
-var rectangle = new THREE.Mesh( geometry, material );
-rectangle.receiveShadow = true;
-//scene.add( rectangle );
+var cylinder = new THREE.Mesh( geometry, material );
+cylinder.receiveShadow = true;
+scene.add( cylinder );
 
 //--------------------------------------------------------------
 
@@ -55,7 +55,7 @@ cube.castShadow = true;
 cube.receiveShadow = true;
 scene.add ( cube );
 
-camera.position.z = 0;
+camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
 
@@ -65,14 +65,29 @@ var t = 0;
 var animate = function () {
 
 	requestAnimationFrame( animate );
-/*
-	t +=0.004;
-	camera.position.z = 3 ; //forward/backwards
-	camera.position.x = 0 ;	// left right
-	camera.position.y = 0 ; // y is up
-	camera.lookAt(cube.position);
 
 	renderer.render(scene, camera);
+    //TODO: fix input "lag"
+    document.addEventListener('keydown', function(event) {
+        //Forward
+        if (event.keyCode == 38) {
+            camera.position.z-=0.001;
+        }
+        //Backwards
+        else if (event.keyCode == 40) {
+            camera.position.z+=0.001;
+        }
+        //Left
+        else if (event.keyCode == 40) {
+            camera.rotation.y+=0.001;
+        }
+        //Right
+        else if (event.keyCode == 40) {
+            camera.position.z+=0.001;
+        }
+    }, true);
+	 camera.position.z = Math.min(Math.max(parseInt(number), -10), 10);
+    
 };
-
+   
 animate();
