@@ -79,7 +79,7 @@ element.width = 100;
 element.height = 100;
 // create the object3d for this element
 var cssObject = new THREE.CSS3DObject( element );
-// we reference the same position and rotation 
+// we reference the same position and rotation
 cssObject.position = cube.position;
 cssObject.position.z = -100;
 cssObject.rotation = cube.rotation;
