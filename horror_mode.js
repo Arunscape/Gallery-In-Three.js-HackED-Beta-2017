@@ -1,6 +1,6 @@
 var scene = new THREE.Scene();
 
-var color1 = new THREE.Color(0x000000);
+var color1 = new THREE.Color(0x110000);
 scene.background = color1;
 scene.fog = new THREE.Fog(0x110000, 1, 240);
 
@@ -42,7 +42,6 @@ bulbLight.add( new THREE.Mesh( bulbGeometry, bulbMat ) );
 bulbLight.position.set( 1, 2, 0 );
 bulbLight.castShadow = true;
 scene.add( bulbLight );
-
 bulbLight.shadow.mapSize.width = 512;  // default
 bulbLight.shadow.mapSize.height = 512; // default
 bulbLight.shadow.camera.near = 0.5;       // default
@@ -72,7 +71,7 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
-scene.add ( cube );
+//scene.add ( cube );
 
 camera.position.z = -3;
 camera.position.y = 0;
@@ -256,28 +255,122 @@ var makePillar = function( i ){
 	scene.add(pillar_mesh2);
 
 }
+//--------------------------------------------------------------
 
+//green flash light
+
+spotLight = new THREE.SpotLight(0x638059);
+spotLight.intensity = 3;
+spotLight.angle = Math.PI/8;
+spotLight.distance = 1200;
+spotLight.decay = 1;
+camera.add(spotLight);
+scene.add(camera);
+
+spotLight.position.set(0,0,50);
+spotLight.target = camera;
 
 
 //--------------------------------------------------------------
+//Control scheme
 
-var t = 0;
+var t = 0.001;
+var spinToggle = false;
+var forward = false;
+var backward = false;
+var left = false;
+var right = false;
+
+
+document.addEventListener('keydown', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        forward = true;
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        backward = true;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        left = true;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        right = true;
+    }
+    //Spacebar, toggles auto-rotate
+    if (event.keyCode == 32) {
+        spinToggle = !spinToggle;
+    }
+    
+    //Bound the camera's z and x position to the shape of the
+    //cylinder.
+    
+    //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
+    camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
+    camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
+    //Math.min(Math.max(number,1),20);
+}, true);
+
+document.addEventListener('keyup', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        forward = false;
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        backward = false;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        left = false;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        right = false;
+    }
+}, true);
+//---------------------------------------------------------------------
+
+
+
+
 var t2 = 0;
 var t3 = 0;
+var t4 = 0;
+var hT = 0;
 
 var addColor = new THREE.Color(0x010101);
 
 var animate = function () {
 
 	requestAnimationFrame( animate );
-
-	t +=0.004;
-
-	camera.position.z = 80 * Math.sin(t);
-	camera.position.x = 80 * Math.cos(t);
-	camera.position.y = 10 * Math.cos(t);
-
+    
+    if (spinToggle === true){
+        t += 0.005;
+    }
+    if (forward === true){
+        camera.position.z -= Math.cos(t)*1.2;
+        camera.position.x -= Math.sin(t)*1.2;
+    }
+    if (backward === true){
+        camera.position.z += Math.cos(t)*1.2;
+        camera.position.x += Math.sin(t)*1.2;
+    }
+    if (left === true){
+        t += 0.04;
+    }
+    if (right === true){
+        t -= 0.04;
+    }
+    
+    camera.rotation.y = t;    
+	
+	
 	t3 += 0.1 * Math.random();
+	t4 += 0.1 * Math.random();
+	hT += 0.1 * Math.random();
 
 	if ( Math.floor(t3) % 10 === 0 ) {
 
@@ -290,10 +383,29 @@ var animate = function () {
 		aLight2.intensity = 0;
 
 	}
+	
+	
+	// erratic flicker of the flash light
+	if ( Math.floor(t4) % Math.floor(Math.random() * 5) === 0 ) {
+
+		spotLight.intensity = 3;
+
+	}
+
+	else if ( Math.floor(t4) % Math.floor(Math.random() * 3) === 0 ) {
+
+		spotLight.intensity = 0;
+
+	}
+	
+	// shake camera
+	if (Math.floor(hT) % 30 === 0 ) {
+		camera.position.z = 80 * Math.random();
+		camera.position.x = 80 * Math.random();
+		camera.position.y = 10 * Math.random();
+	}
 
 	ay.add(addColor);
-
-	camera.lookAt(cube.position);
 
 	renderer.render( scene, camera );
 	cssRenderer.render( cssScene, camera );
