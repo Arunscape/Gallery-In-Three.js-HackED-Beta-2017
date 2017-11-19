@@ -272,8 +272,70 @@ spotLight.target = camera;
 
 
 //--------------------------------------------------------------
+//Control scheme
 
-var t = 0;
+var t = 0.001;
+var spinToggle = false;
+var forward = false;
+var backward = false;
+var left = false;
+var right = false;
+
+
+document.addEventListener('keydown', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        forward = true;
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        backward = true;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        left = true;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        right = true;
+    }
+    //Spacebar, toggles auto-rotate
+    if (event.keyCode == 32) {
+        spinToggle = !spinToggle;
+    }
+    
+    //Bound the camera's z and x position to the shape of the
+    //cylinder.
+    
+    //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
+    camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
+    camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
+    //Math.min(Math.max(number,1),20);
+}, true);
+
+document.addEventListener('keyup', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        forward = false;
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        backward = false;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        left = false;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        right = false;
+    }
+}, true);
+//---------------------------------------------------------------------
+
+
+
+
 var t2 = 0;
 var t3 = 0;
 var t4 = 0;
@@ -283,13 +345,28 @@ var addColor = new THREE.Color(0x010101);
 var animate = function () {
 
 	requestAnimationFrame( animate );
-
-	t +=0.004;
-
-	camera.position.z = 80 * Math.sin(t);
-	camera.position.x = 80 * Math.cos(t);
-	camera.position.y = 10 * Math.cos(t);
-
+    
+    if (spinToggle === true){
+        t += 0.005;
+    }
+    if (forward === true){
+        camera.position.z -= Math.cos(t)*1.2;
+        camera.position.x -= Math.sin(t)*1.2;
+    }
+    if (backward === true){
+        camera.position.z += Math.cos(t)*1.2;
+        camera.position.x += Math.sin(t)*1.2;
+    }
+    if (left === true){
+        t += 0.04;
+    }
+    if (right === true){
+        t -= 0.04;
+    }
+    
+    camera.rotation.y = t;    
+	
+	
 	t3 += 0.1 * Math.random();
 	t4 += 0.1 * Math.random();
 
@@ -320,8 +397,6 @@ var animate = function () {
 	}
 
 	ay.add(addColor);
-
-	camera.lookAt(cube.position);
 
 	renderer.render( scene, camera );
 	cssRenderer.render( cssScene, camera );
