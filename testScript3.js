@@ -39,12 +39,12 @@ scene.add( aLight );
 
 //--------------------------------------------------------------
 
-var geometry = new THREE.CylinderGeometry( 10, 10, 5, 7 );
+var geometry = new THREE.BoxGeometry( 20, 10, 10 );
 var material = new THREE.MeshStandardMaterial( {color: 0xffffff} );
 material.side = THREE.DoubleSide;
-var cylinder = new THREE.Mesh( geometry, material );
-cylinder.receiveShadow = true;
-scene.add( cylinder );
+var rectangle = new THREE.Mesh( geometry, material );
+rectangle.receiveShadow = true;
+//scene.add( rectangle );
 
 //--------------------------------------------------------------
 
@@ -55,7 +55,7 @@ cube.castShadow = true;
 cube.receiveShadow = true;
 scene.add ( cube );
 
-camera.position.z = -3;
+camera.position.z = 0;
 camera.position.y = 0;
 camera.position.x = 0;
 
@@ -67,10 +67,10 @@ var animate = function () {
 	requestAnimationFrame( animate );
 
 	t +=0.004;
-	camera.position.z = 4 * Math.sin(t);
-	camera.position.x = 4 * Math.cos(t);
-	camera.position.y = 2 * Math.cos(t);
-	camera.lookAt(cylinder.position);
+	camera.position.z = 3 ; //forward/backwards
+	camera.position.x = 0 ;	// left right
+	camera.position.y = 0 ; // y is up
+	camera.lookAt(cube.position);
 
 	renderer.render(scene, camera);
 };
