@@ -50,7 +50,7 @@ scene.add( aLight );
 
 //--------------------------------------------------------------
 
-var geo = new THREE.BoxGeometry( 1200, 200, 200);
+var geo = new THREE.BoxGeometry( 3000, 200, 3000);
 var mat = new THREE.MeshStandardMaterial( {color: 0xffffff} );
 mat.side = THREE.DoubleSide;
 var cylinder = new THREE.Mesh( geo, mat );
@@ -64,9 +64,11 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
+
 /*
 scene.add ( cube );
 */
+
 
 camera.position.z = -3;
 camera.position.y = 0;
@@ -76,39 +78,39 @@ camera.position.x = 0;
 
 // create the dom Element
 var element = document.createElement( 'video' );
-element.setAttribute("autoplay", true);
-element.setAttribute("loop", true);
-element.width = 100;
-element.height = 100;
+// element.setAttribute("autoplay", true);
+// element.setAttribute("loop", true);
+// element.width = 100;
+// element.height = 100;
 // create the object3d for this element
 var cssObject = new THREE.CSS3DObject( element );
-// we reference the same position and rotation 
-cssObject.position = cube.position;
-cssObject.position.z = -100;
-cssObject.rotation = cube.rotation;
+// we reference the same position and rotation
+// cssObject.position = cube.position;
+// cssObject.position.z = -100;
+// cssObject.rotation = cube.rotation;
 // add it to the css scene
-cssScene.add(cssObject);
+ //cssScene.add(cssObject);
 
 //--------------------------------------------------------------
 
-var cssRenderer = new THREE.CSS3DRenderer();
-cssRenderer.setSize( window.innerWidth, window.innerHeight );
-cssRenderer.domElement.style.position = 'absolute';
-cssRenderer.domElement.style.top = 0;
-document.body.appendChild( cssRenderer.domElement );
+// var cssRenderer = new THREE.CSS3DRenderer();
+// cssRenderer.setSize( window.innerWidth, window.innerHeight );
+// cssRenderer.domElement.style.position = 'absolute';
+// cssRenderer.domElement.style.top = 0;
+// document.body.appendChild( cssRenderer.domElement );
 
 //--------------------------------------------------------------
 
-var element2 = document.createElement( 'video' );
-element2.setAttribute("autoplay", true);
-element2.setAttribute("loop", true);
-element2.width = 100;
-element2.height = 100;
-var cssObject2 = new THREE.CSS3DObject( element2 );
-cssObject2.position = cssObject.position;
-cssObject2.position.z = 100;
-cssObject2.rotation = cssObject.rotation;
-cssScene.add(cssObject2);
+// var element2 = document.createElement( 'video' );
+// element2.setAttribute("autoplay", true);
+// element2.setAttribute("loop", true);
+// element2.width = 100;
+// element2.height = 100;
+// var cssObject2 = new THREE.CSS3DObject( element2 );
+// cssObject2.position = cssObject.position;
+// cssObject2.position.z = 100;
+// cssObject2.rotation = cssObject.rotation;
+// cssScene.add(cssObject2);
 
 //--------------------------------------------------------------
 
@@ -127,19 +129,19 @@ scene.add(planeMesh2);
 
 //--------------------------------------------------------------
 
-var randomNumber1 = Math.floor(Math.random() * 100);
-var randomNumber2 = Math.floor(Math.random() * 100);
-
-
-getGyfs().then(function(gyfs) {
-
-	element2.src = gyfs[randomNumber1];
-	element.src = gyfs[randomNumber2];
-
-})
+// var randomNumber1 = Math.floor(Math.random() * 100);
+// var randomNumber2 = Math.floor(Math.random() * 100);
+//
+//
+// getGyfs().then(function(gyfs) {
+//
+// 	element2.src = gyfs[randomNumber1];
+// 	element.src = gyfs[randomNumber2];
+//
+// })
 
 //--------------------------------------------------------------
-
+getGyfs().then(function(gyfs) {
 var wall = function(i, wall, gif_number){
 
 	var gif_element = document.createElement( 'video' );
@@ -167,11 +169,11 @@ var wall = function(i, wall, gif_number){
 	gif_cssObject.rotation = cssObject.rotation;
 	cssScene.add(gif_cssObject);
 
-	getGyfs().then(function(gyfs) {
+
 
 		gif_element.src = gyfs[gif_number];
 
-	})
+
 
 	var ye = Math.floor(0xffffff * Math.random());
 
@@ -198,17 +200,30 @@ var wall = function(i, wall, gif_number){
 }
 
 //--------------------------------------------------------------
+//Math.floor(Math.random() * 100)
 
 
-wall(-150, false, 30);
-wall(150, true, 40);
-wall(-150, true, 32);
-wall(150, false, 23);
-wall(-300, false, 72);
-wall(300, true, 81);
-wall(-300, true, 11);
-wall(300, false, 12);
+wall(0,false,Math.floor(Math.random() * 100))
+wall(0,true,Math.floor(Math.random() * 100))
+let distance_from_origin=150
 
+//40 gifs will be displayed
+for(i=0;i<10;i++){
+	wall(-distance_from_origin,false,Math.floor(Math.random() * 100))
+	wall(distance_from_origin,true,Math.floor(Math.random() * 100))
+	wall(-distance_from_origin,true,Math.floor(Math.random() * 100))
+	wall(distance_from_origin,false,Math.floor(Math.random() * 100))
+	distance_from_origin+=150
+}
+// wall(-150, false, 30);
+// wall(150, true, 40);
+// wall(-150, true, 32);
+// wall(150, false, 23);
+// wall(-300, false, 72);
+// wall(300, true, 81);
+// wall(-300, true, 11);
+// wall(300, false, 12);
+})
 //--------------------------------------------------------------
 
 
@@ -234,16 +249,22 @@ var makePillar = function( i ){
 	scene.add(pillar_mesh2);
 
 }
+//make 40 pillars for 40 images
+makePillar(0)
+for(i=1;i<10;i++){
+	makePillar(i)
+	makePillar(-i)
+}
 
-makePillar( 0 );
-makePillar( 1 );
-makePillar( -1 );
-makePillar( 2 );
-makePillar( -2 );
-makePillar( 3 );
-makePillar( -3 );
-makePillar( 4 );
-makePillar( -4 );
+// makePillar( 0 );
+// makePillar( 1 );
+// makePillar( -1 );
+// makePillar( 2 );
+// makePillar( -2 );
+// makePillar( 3 );
+// makePillar( -3 );
+// makePillar( 4 );
+// makePillar( -4 );
 
 
 
@@ -254,7 +275,7 @@ var green = new THREE.Color( 0x008000 );
 var red = new THREE.Color( 0xff0000 );
 var blue = new THREE.Color( 0x0000ff );
 var spotLight = new THREE.SpotLight(red);
- 
+
 spotLight.intensity = 2;
 spotLight.angle = Math.PI/8;
 spotLight.distance = 500;
@@ -304,7 +325,7 @@ Mousetrap.bind('space',function(){
 })
 
 Mousetrap.bind('up',function(){
-    
+
 },onkeyup)
 */
 
@@ -336,13 +357,13 @@ document.addEventListener('keydown', function(event) {
     if (event.keyCode == 32) {
         spinToggle = !spinToggle;
     }
-    
+
     //Bound the camera's z and x position to the shape of the
     //cylinder.
-    
+
     //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
     camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
-    camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
+    camera.position.x = Math.min(Math.max(camera.position.x,-1000),1000);
     //Math.min(Math.max(number,1),20);
 }, true);
 
@@ -399,24 +420,24 @@ var animate = function () {
     if (right === true){
         t -= 0.04;
     }
-    
-    camera.rotation.y = t;    
-	
+
+    camera.rotation.y = t;
+
 	t2 += 0.1 ;
-	
+
 	if ( Math.floor(t2) % 9 === 0) {
 		spotLight.color = green;
 	}
-	
+
 	else if ( Math.floor(t2) % 6 === 0) {
 		spotLight.color = red;
 	}
-	
+
 	else if ( Math.floor(t2) % 3 === 0) {
 		spotLight.color = blue;
 	}
-    
-	
+
+
 
 	renderer.render( scene, camera );
 	cssRenderer.render( cssScene, camera );
