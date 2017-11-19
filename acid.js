@@ -64,7 +64,7 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
-scene.add ( cube );
+// scene.add ( cube );
 
 camera.position.z = -3;
 camera.position.y = 0;
@@ -196,17 +196,29 @@ var wall = function(i, wall, gif_number){
 }
 
 //--------------------------------------------------------------
+//Math.floor(Math.random() * 100)
 
-wall(0,false,69)
-wall(0,true,69)
-wall(-150, false, 30);
-wall(150, true, 40);
-wall(-150, true, 32);
-wall(150, false, 23);
-wall(-300, false, 72);
-wall(300, true, 81);
-wall(-300, true, 11);
-wall(300, false, 12);
+
+wall(0,false,Math.floor(Math.random() * 100))
+wall(0,true,Math.floor(Math.random() * 100))
+let distance_from_origin=150
+
+//40 gifs will be displayed
+for(i=0;i<10;i++){
+	wall(-distance_from_origin,false,Math.floor(Math.random() * 100))
+	wall(distance_from_origin,true,Math.floor(Math.random() * 100))
+	wall(-distance_from_origin,true,Math.floor(Math.random() * 100))
+	wall(distance_from_origin,false,Math.floor(Math.random() * 100))
+	distance_from_origin+=150
+}
+// wall(-150, false, 30);
+// wall(150, true, 40);
+// wall(-150, true, 32);
+// wall(150, false, 23);
+// wall(-300, false, 72);
+// wall(300, true, 81);
+// wall(-300, true, 11);
+// wall(300, false, 12);
 })
 //--------------------------------------------------------------
 
@@ -233,16 +245,22 @@ var makePillar = function( i ){
 	scene.add(pillar_mesh2);
 
 }
+//make 40 pillars for 40 images
+makePillar(0)
+for(i=1;i<40;i++){
+	makePillar(i)
+	makePillar(-i)
+}
 
-makePillar( 0 );
-makePillar( 1 );
-makePillar( -1 );
-makePillar( 2 );
-makePillar( -2 );
-makePillar( 3 );
-makePillar( -3 );
-makePillar( 4 );
-makePillar( -4 );
+// makePillar( 0 );
+// makePillar( 1 );
+// makePillar( -1 );
+// makePillar( 2 );
+// makePillar( -2 );
+// makePillar( 3 );
+// makePillar( -3 );
+// makePillar( 4 );
+// makePillar( -4 );
 
 
 
