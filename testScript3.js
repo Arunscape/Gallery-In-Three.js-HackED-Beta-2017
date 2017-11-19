@@ -37,6 +37,7 @@ bulbLight.shadow.camera.far = 500      // default
 var aLight = new THREE.AmbientLight( 0xffffff, 1 ); // soft white light
 scene.add( aLight );
 
+
 //--------------------------------------------------------------
 
 var geometry = new THREE.CylinderGeometry( 10, 10, 5, 7 );
@@ -61,15 +62,28 @@ camera.position.x = 0;
 
 var t = 0.001;
 
+//---------------------------------------------------------------
+
+
+var spotLight = new THREE.SpotLight(0xffffff,1,10);
+spotLight.position.set( 1, 2, 0 );
+spotLight.castShadow = true;
+//spotLight.target = cube;
+scene.add( spotLight );
+
+
+
 
 var animate = function () {
 
 	requestAnimationFrame( animate );
 
     camera.rotation.y = t;
+	spotLight.position.copy( camera.position );
+	spotLight.rotation.copy( camera.rotation );
     renderer.render(scene, camera);
 
-    //camera.lookAt(scene.position);
+   
 };
    
     document.addEventListener('keydown', function(event) {
