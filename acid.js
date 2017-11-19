@@ -231,13 +231,14 @@ var pillar_geo = new THREE.CylinderGeometry( 10, 10, 400, 9);
 
 var makePillar = function( i ){
 
-	let pillar_mesh1 = new THREE.Mesh( pillar_geo, pillar_mat );
-	let pillar_mesh2 = new THREE.Mesh( pillar_geo, pillar_mat );
-
 	var ye = Math.floor(0xffffff * Math.random());
 
 	var pillar_mat = new THREE.MeshStandardMaterial( { color: ye } );
 	pillar_mat.recieveShadow = true;
+
+	let pillar_mesh1 = new THREE.Mesh( pillar_geo, pillar_mat );
+	let pillar_mesh2 = new THREE.Mesh( pillar_geo, pillar_mat );
+
 
 	pillar_mesh1.position.z =  105;
 	pillar_mesh2.position.z = -105;
