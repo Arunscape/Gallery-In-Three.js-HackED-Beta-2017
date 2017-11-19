@@ -50,7 +50,7 @@ scene.add( aLight );
 
 //--------------------------------------------------------------
 
-var geo = new THREE.BoxGeometry( 2000, 200, 200);
+var geo = new THREE.BoxGeometry( 1200, 200, 200);
 var mat = new THREE.MeshStandardMaterial( {color: 0xffffff} );
 mat.side = THREE.DoubleSide;
 var cylinder = new THREE.Mesh( geo, mat );
@@ -333,7 +333,7 @@ document.addEventListener('keydown', function(event) {
     
     //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
     camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
-    camera.position.x = Math.min(Math.max(camera.position.x,-600),600);
+    camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
     //Math.min(Math.max(number,1),20);
 }, true);
 
@@ -367,7 +367,7 @@ var t2 = 0;
 var addColor = new THREE.Color(0x010101);
 
 var animate = function () {
-
+    console.log(camera.position.x);
 	requestAnimationFrame( animate );
 
 	ay.add(addColor);
