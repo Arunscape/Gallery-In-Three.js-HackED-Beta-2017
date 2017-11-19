@@ -64,13 +64,11 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
-<<<<<<< HEAD
-// scene.add ( cube );
-=======
+
 /*
 scene.add ( cube );
 */
->>>>>>> master
+
 
 camera.position.z = -3;
 camera.position.y = 0;
