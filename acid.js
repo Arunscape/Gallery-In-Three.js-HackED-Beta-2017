@@ -50,7 +50,7 @@ scene.add( aLight );
 
 //--------------------------------------------------------------
 
-var geo = new THREE.BoxGeometry( 1200, 200, 200);
+var geo = new THREE.BoxGeometry( 3000, 200, 3000);
 var mat = new THREE.MeshStandardMaterial( {color: 0xffffff} );
 mat.side = THREE.DoubleSide;
 var cylinder = new THREE.Mesh( geo, mat );
@@ -251,7 +251,7 @@ var makePillar = function( i ){
 }
 //make 40 pillars for 40 images
 makePillar(0)
-for(i=1;i<40;i++){
+for(i=1;i<10;i++){
 	makePillar(i)
 	makePillar(-i)
 }
@@ -363,7 +363,7 @@ document.addEventListener('keydown', function(event) {
 
     //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
     camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
-    camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
+    camera.position.x = Math.min(Math.max(camera.position.x,-1000),1000);
     //Math.min(Math.max(number,1),20);
 }, true);
 
