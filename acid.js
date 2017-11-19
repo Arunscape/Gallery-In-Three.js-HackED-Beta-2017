@@ -74,39 +74,39 @@ camera.position.x = 0;
 
 // create the dom Element
 var element = document.createElement( 'video' );
-element.setAttribute("autoplay", true);
-element.setAttribute("loop", true);
-element.width = 100;
-element.height = 100;
+// element.setAttribute("autoplay", true);
+// element.setAttribute("loop", true);
+// element.width = 100;
+// element.height = 100;
 // create the object3d for this element
 var cssObject = new THREE.CSS3DObject( element );
-// we reference the same position and rotation 
-cssObject.position = cube.position;
-cssObject.position.z = -100;
-cssObject.rotation = cube.rotation;
+// we reference the same position and rotation
+// cssObject.position = cube.position;
+// cssObject.position.z = -100;
+// cssObject.rotation = cube.rotation;
 // add it to the css scene
-cssScene.add(cssObject);
+ //cssScene.add(cssObject);
 
 //--------------------------------------------------------------
 
-var cssRenderer = new THREE.CSS3DRenderer();
-cssRenderer.setSize( window.innerWidth, window.innerHeight );
-cssRenderer.domElement.style.position = 'absolute';
-cssRenderer.domElement.style.top = 0;
-document.body.appendChild( cssRenderer.domElement );
+// var cssRenderer = new THREE.CSS3DRenderer();
+// cssRenderer.setSize( window.innerWidth, window.innerHeight );
+// cssRenderer.domElement.style.position = 'absolute';
+// cssRenderer.domElement.style.top = 0;
+// document.body.appendChild( cssRenderer.domElement );
 
 //--------------------------------------------------------------
 
-var element2 = document.createElement( 'video' );
-element2.setAttribute("autoplay", true);
-element2.setAttribute("loop", true);
-element2.width = 100;
-element2.height = 100;
-var cssObject2 = new THREE.CSS3DObject( element2 );
-cssObject2.position = cssObject.position;
-cssObject2.position.z = 100;
-cssObject2.rotation = cssObject.rotation;
-cssScene.add(cssObject2);
+// var element2 = document.createElement( 'video' );
+// element2.setAttribute("autoplay", true);
+// element2.setAttribute("loop", true);
+// element2.width = 100;
+// element2.height = 100;
+// var cssObject2 = new THREE.CSS3DObject( element2 );
+// cssObject2.position = cssObject.position;
+// cssObject2.position.z = 100;
+// cssObject2.rotation = cssObject.rotation;
+// cssScene.add(cssObject2);
 
 //--------------------------------------------------------------
 
@@ -125,16 +125,16 @@ scene.add(planeMesh2);
 
 //--------------------------------------------------------------
 
-var randomNumber1 = Math.floor(Math.random() * 100);
-var randomNumber2 = Math.floor(Math.random() * 100);
-
-
-getGyfs().then(function(gyfs) {
-
-	element2.src = gyfs[randomNumber1];
-	element.src = gyfs[randomNumber2];
-
-})
+// var randomNumber1 = Math.floor(Math.random() * 100);
+// var randomNumber2 = Math.floor(Math.random() * 100);
+//
+//
+// getGyfs().then(function(gyfs) {
+//
+// 	element2.src = gyfs[randomNumber1];
+// 	element.src = gyfs[randomNumber2];
+//
+// })
 
 //--------------------------------------------------------------
 
@@ -197,7 +197,8 @@ var wall = function(i, wall, gif_number){
 
 //--------------------------------------------------------------
 
-
+wall(0,false,69)
+wall(0,true,69)
 wall(-150, false, 30);
 wall(150, true, 40);
 wall(-150, true, 32);
@@ -266,7 +267,7 @@ document.addEventListener('keydown', function(event) {
         camera.position.z -= Math.cos(t)*2;
         camera.position.x -= Math.sin(t)*2;
         //event.keyCode = 0;
-        
+
     }
     //Backwards
     if (event.keyCode == 40) {
@@ -284,16 +285,16 @@ document.addEventListener('keydown', function(event) {
         t -= 0.08;
         //camera.rotation.y -= 0.0001;
     }
-    
+
     //Spacebar, toggles auto-rotate
     if (event.keyCode == 32) {
         spinToggle = !spinToggle;
-        
+
     }
-    
+
     //Bound the camera's z and x position to the shape of the
     //cylinder.
-    
+
     //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
     camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
     camera.position.x = Math.min(Math.max(camera.position.x,-600),600);
@@ -317,13 +318,13 @@ var animate = function () {
 	if (spinToggle === true){
         t += 0.005;
     }
-    
+
     camera.rotation.y = t;
-    
-    
+
+
     spotLight.position.copy( camera.position );
 
-    
+
 
 	renderer.render( scene, camera );
 	cssRenderer.render( cssScene, camera );
