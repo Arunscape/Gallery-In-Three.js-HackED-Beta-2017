@@ -59,6 +59,11 @@ camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
 
+
+var t = 0.001;
+var spinToggle = false;
+
+
 var animate = function () {
 
 	requestAnimationFrame( animate );
@@ -118,4 +123,17 @@ document.addEventListener('keydown', function(event) {
     camera.position.x = Math.min(Math.max(camera.position.x,-8),8);
     //Math.min(Math.max(number,1),20);
 }, true);
+
 animate();
+/*
+ document.addEventListener('keydown', function(event) {
+        if (event.keyCode == 37) {
+            alert('Left was pressed');
+        }
+        else if (event.keyCode == 39) {
+            alert('Right was pressed');
+        }
+    }, true);
+    
+};
+*/
