@@ -66,17 +66,12 @@ var animate = function () {
 
 	requestAnimationFrame( animate );
 
-<<<<<<< HEAD
-	renderer.render(scene, camera);
-    //TODO: fix input "lag"
-=======
     camera.rotation.y = t;
     renderer.render(scene, camera);
 
     //camera.lookAt(scene.position);
 };
    
->>>>>>> Chris
     document.addEventListener('keydown', function(event) {
         //Forward
         if (event.keyCode == 38) {
@@ -99,12 +94,17 @@ var animate = function () {
             //camera.rotation.y -= 0.0001;
         }
     }, true);
-<<<<<<< HEAD
-	 camera.position.z = Math.min(Math.max(parseInt(number), -10), 10);
+//camera.lookAt(cylinder.position);
+animate();
+/*
+ document.addEventListener('keydown', function(event) {
+        if (event.keyCode == 37) {
+            alert('Left was pressed');
+        }
+        else if (event.keyCode == 39) {
+            alert('Right was pressed');
+        }
+    }, true);
     
 };
-   
-=======
-//camera.lookAt(cylinder.position);
->>>>>>> Chris
-animate();
+*/
