@@ -63,14 +63,14 @@ camera.position.x = 0;
 var t = 0.001;
 var spinToggle = false;
 
-
 var animate = function () {
 
 	requestAnimationFrame( animate );
-
+    if (spinToggle === true){
+        t += 0.005;
+    }
     
     camera.rotation.y = t;
-    
     
     
     spotLight.position.copy( camera.position );
@@ -107,7 +107,7 @@ document.addEventListener('keydown', function(event) {
     
     //Spacebar, toggles auto-rotate
     if (event.keyCode == 32) {
-        spinToggle = true;
+        spinToggle = !spinToggle;
         
     }
     
