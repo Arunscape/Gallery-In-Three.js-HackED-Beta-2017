@@ -59,28 +59,10 @@ camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
 
-<<<<<<< HEAD
-var t = 0;
-=======
-var t = 0.001;
-var spinToggle = false;
->>>>>>> a526737... Filler commit
-
-
 var animate = function () {
 
 	requestAnimationFrame( animate );
-<<<<<<< HEAD
 
-	t +=0.004;
-	camera.position.z = 4 * Math.sin(t);
-	camera.position.x = 4 * Math.cos(t);
-	camera.position.y = 2 * Math.cos(t);
-	camera.lookAt(cylinder.position);
-
-	renderer.render(scene, camera);
-};
-=======
     
     camera.rotation.y = t;
     
@@ -136,6 +118,4 @@ document.addEventListener('keydown', function(event) {
     camera.position.x = Math.min(Math.max(camera.position.x,-8),8);
     //Math.min(Math.max(number,1),20);
 }, true);
->>>>>>> a526737... Filler commit
-
 animate();
