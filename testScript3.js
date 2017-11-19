@@ -71,15 +71,15 @@ var animate = function () {
     
     camera.rotation.y = t;
     
-    if (spinToggle == true){
-        camera.rotation.y += 0.08;
-    }
     
+    
+    spotLight.position.copy( camera.position );
+
     
     renderer.render(scene, camera);
     
 };
-   
+
 document.addEventListener('keydown', function(event) {
     //Forward
     if (event.keyCode == 38) {
@@ -107,12 +107,8 @@ document.addEventListener('keydown', function(event) {
     
     //Spacebar, toggles auto-rotate
     if (event.keyCode == 32) {
-        if(spinToggle == false){
-            spinToggle = true;
-        }
-        if(spinToggle == true){
-            spinToggle = false;
-        }
+        spinToggle = true;
+        
     }
     
     //Bound the camera's z and x position to the shape of the
@@ -123,7 +119,15 @@ document.addEventListener('keydown', function(event) {
     camera.position.x = Math.min(Math.max(camera.position.x,-8),8);
     //Math.min(Math.max(number,1),20);
 }, true);
+//------------------------------------------
 
+var spotLight = new THREE.SpotLight();
+spotLight.angle = Math.PI/6;
+scene.add(camera);
+camera.add(spotLight.target);
+
+spotLight.target.position.set(0,0,-0.5);
+scene.add(spotLight);
 animate();
 /*
  document.addEventListener('keydown', function(event) {
