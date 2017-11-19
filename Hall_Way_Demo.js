@@ -77,10 +77,9 @@ element.setAttribute("autoplay", true);
 element.setAttribute("loop", true);
 element.width = 100;
 element.height = 100;
-element.src = 'https://zippy.gfycat.com/MintyHardtofindCob.webm';
 // create the object3d for this element
 var cssObject = new THREE.CSS3DObject( element );
-// we reference the same position and rotation
+// we reference the same position and rotation 
 cssObject.position = cube.position;
 cssObject.position.z = -100;
 cssObject.rotation = cube.rotation;
@@ -97,20 +96,16 @@ document.body.appendChild( cssRenderer.domElement );
 
 //--------------------------------------------------------------
 
-getGyfs().then(function(gyfs) {
-	var element2 = document.createElement( 'video' );
-	element2.setAttribute("autoplay", true);
-	element2.setAttribute("loop", true);
-	element2.width = 100;
-	element2.height = 100;
-	element2.src = gyfs[0];
-	var cssObject2 = new THREE.CSS3DObject( element2 );
-	cssObject2.position = cssObject.position;
-	cssObject2.position.z = 100;
-	cssObject2.rotation = cssObject.rotation;
-	cssScene.add(cssObject2);
-})
-
+var element2 = document.createElement( 'video' );
+element2.setAttribute("autoplay", true);
+element2.setAttribute("loop", true);
+element2.width = 100;
+element2.height = 100;
+var cssObject2 = new THREE.CSS3DObject( element2 );
+cssObject2.position = cssObject.position;
+cssObject2.position.z = 100;
+cssObject2.rotation = cssObject.rotation;
+cssScene.add(cssObject2);
 
 //--------------------------------------------------------------
 
@@ -128,6 +123,20 @@ scene.add(planeMesh1);
 scene.add(planeMesh2);
 
 //--------------------------------------------------------------
+
+var randomNumber1 = Math.floor(Math.random() * 100);
+var randomNumber2 = Math.floor(Math.random() * 100);
+
+
+getGyfs().then(function(gyfs) {
+
+	element2.src = gyfs[randomNumber1];
+	element.src = gyfs[randomNumber2];
+})
+
+//--------------------------------------------------------------
+
+
 
 var t = 0;
 
