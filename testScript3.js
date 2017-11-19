@@ -82,8 +82,13 @@ var animate = function () {
 	spotLight.position.copy( camera.position );
 	spotLight.rotation.copy( camera.rotation );
     renderer.render(scene, camera);
+<<<<<<< HEAD
 
    
+=======
+    
+    
+>>>>>>> Chris
 };
    
     document.addEventListener('keydown', function(event) {
