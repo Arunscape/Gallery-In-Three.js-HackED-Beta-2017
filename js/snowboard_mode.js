@@ -103,7 +103,7 @@ element.width = 100;
 element.height = 100;
 // create the object3d for this element
 var cssObject = new THREE.CSS3DObject( element );
-// we reference the same position and rotation 
+// we reference the same position and rotation
 cssObject.position = cube.position;
 cssObject.position.z = -100;
 cssObject.rotation = cube.rotation;
@@ -151,10 +151,10 @@ document.addEventListener('keydown', function(event) {
     if (event.keyCode == 32) {
         spinToggle = !spinToggle;
     }
-    
+
     //Bound the camera's z and x position to the shape of the
     //cylinder.
-    
+
     //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
     camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
     camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
@@ -194,8 +194,8 @@ sound.setBuffer( buffer );
 //sound.setLoop( true );
 sound.setVolume( 0.5 );
 sound.play();
-}); 
- 
+});
+
 
 //------------------------------------------
 
@@ -283,7 +283,7 @@ for (let j = 0; j < 6; j++) {
 
 	wall_link(j * 150, true, links[j]);
 
-	wall_link(j * 150, false, links[j]);
+	wall_link(j * 150, false, links[j+1]);
 
 }
 
@@ -292,9 +292,23 @@ for (let j = 6; j < 12; j++) {
 
 	wall_link((j - 5) * -150, true, links[j]);
 
-	wall_link((j - 5) * -150, false, links[j]);
+	wall_link((j - 5) * -150, false, links[j+1]);
 
 }
+
+// wall_link(0,false,0)
+// wall_link(0,true,1)
+//
+// wall_link(-150, false, 2);
+// wall_link(150, true, 3);
+// wall_link(-150, true, 4);
+// wall_link(150, false, 5);
+// wall_link(-300, false, 6);
+// wall_link(300, true, 7);
+// wall_link(-300, true, 8);
+// wall_link(300, false, 9);
+
+
 
 
 //=============================================================//
@@ -334,7 +348,7 @@ var t2 = 0;
 var t3 = 0;
 
 var spotLight = new THREE.SpotLight();
- 
+
 spotLight.intensity = 2;
 spotLight.angle = Math.PI/8;
 spotLight.distance = 500;
@@ -348,11 +362,11 @@ spotLight.target = camera;
 var animate = function () {
 
 	requestAnimationFrame( animate );
-	
+
 	t3 +=0.1;
-	
+
 	spotLight.intensity = (1+Math.sin(t3));
-	
+
 	if (spinToggle === true){
         t += 0.005;
     }
@@ -370,9 +384,9 @@ var animate = function () {
     if (right === true){
         t -= 0.04;
     }
-    
-    camera.rotation.y = t;    
-	
+
+    camera.rotation.y = t;
+
 	renderer.render( scene, camera );
 	cssRenderer.render( cssScene, camera );
 };
