@@ -65,7 +65,7 @@ var t = 0;
 var animate = function () {
 
 	requestAnimationFrame( animate );
-
+/*
 	t +=0.004;
 	camera.position.z = 3 ; //forward/backwards
 	camera.position.x = 0 ;	// left right
