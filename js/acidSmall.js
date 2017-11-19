@@ -1,10 +1,10 @@
 var scene = new THREE.Scene();
 
-var color1 = new THREE.Color(0x00CCFF);
+var color1 = new THREE.Color(0xccbb55);
 scene.background = color1;
 scene.fog = new THREE.Fog(0xccbb55, 1, 400);
 
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 100000 );
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 500 );
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -14,6 +14,32 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild( renderer.domElement );
 
 var cssScene = new THREE.Scene();
+
+//--------------------------------------------------------------
+
+var weird_properties = new THREE.TorusKnotBufferGeometry( 50, 3, 100, 80 );
+var weird_material = new THREE.MeshStandardMaterial( { color: 0xffff00, metalness: 0.4 } );
+var torusKnot = new THREE.Mesh( weird_properties , weird_material );
+scene.add( torusKnot );
+
+var torusKnot2 = new THREE.Mesh( weird_properties, weird_material );
+scene.add( torusKnot2 );
+
+torusKnot.position.x = 550;
+torusKnot2.position.x = -550;
+
+//--------------------------------------------------------------
+
+var properties_um = new THREE.BoxGeometry(40, 40, 40);
+var weird_materials_fam = new THREE.MeshStandardMaterial( { color: 0x0000ff, metalness: 0.4} );
+var boxy = new THREE.Mesh( properties_um, weird_materials_fam );
+scene.add(boxy);
+
+var boxy2 = new THREE.Mesh( properties_um, weird_materials_fam );
+scene.add(boxy2);
+
+boxy.position.x = torusKnot.position.x;
+boxy2.position.x = torusKnot2.position.x;
 
 //--------------------------------------------------------------
 
@@ -28,9 +54,9 @@ document.body.appendChild( cssRenderer.domElement );
 var bulbLight = new THREE.PointLight( 0xffaabb, 1, 200, 2 );
 var bulbGeometry = new THREE.SphereGeometry( 0.02, 2, 2 );
 bulbMat = new THREE.MeshStandardMaterial( {
-	emissive: 0xffffff,
-	emissiveIntensity: 1,
-	color: 0x000000
+    emissive: 0xffffff,
+    emissiveIntensity: 1,
+    color: 0x000000
 });
 bulbLight.add( new THREE.Mesh( bulbGeometry, bulbMat ) );
 bulbLight.position.set( 1, 2, 0 );
@@ -132,8 +158,8 @@ var randomNumber2 = Math.floor(Math.random() * 100);
 
 getGyfs().then(function(gyfs) {
 
-	element2.src = gyfs[randomNumber1];
-	element.src = gyfs[randomNumber2];
+    element2.src = gyfs[randomNumber1];
+    element.src = gyfs[randomNumber2];
 
 })
 
@@ -141,67 +167,67 @@ getGyfs().then(function(gyfs) {
 
 var wall = function(i, wall, gif_number){
 
-	var gif_element = document.createElement( 'video' );
-	gif_element.setAttribute("autoplay", true);
-	gif_element.setAttribute("loop", true);
-	gif_element.width = 100;
-	gif_element.height = 100;
-	var gif_cssObject = new THREE.CSS3DObject( gif_element );
-	gif_cssObject.position = cssObject.position;
+    var gif_element = document.createElement( 'video' );
+    gif_element.setAttribute("autoplay", true);
+    gif_element.setAttribute("loop", true);
+    gif_element.width = 100;
+    gif_element.height = 100;
+    var gif_cssObject = new THREE.CSS3DObject( gif_element );
+    gif_cssObject.position = cssObject.position;
 
 
-	if (wall){
+    if (wall){
 
-		gif_cssObject.position.z = 100;
+        gif_cssObject.position.z = 100;
 
-	} else {
+    } else {
 
-		gif_cssObject.position.z = -100;
+        gif_cssObject.position.z = -100;
 
-	}
-
-
-
-	gif_cssObject.position.x = i;
-	gif_cssObject.rotation = cssObject.rotation;
-	cssScene.add(gif_cssObject);
-
-	getGyfs().then(function(gyfs) {
-
-		gif_element.src = gyfs[gif_number];
-
-	})
-
-	var ye = Math.floor(0xffffff * Math.random());
-
-	var darkMat = new THREE.MeshStandardMaterial( {color: ye} );
-	var planeGeo = new THREE.PlaneGeometry(110, 210);
-	var gif_planeMesh = new THREE.Mesh( planeGeo, darkMat );
-
-	darkMat.side = THREE.DoubleSide;
-
-	gif_planeMesh.position.x = i;
-
-	if (wall){
-
-		gif_planeMesh.position.z = 99;
-
-	} else {
-
-		gif_planeMesh.position.z = -99;
-
-	}
+    }
 
 
-	scene.add(gif_planeMesh);
+
+    gif_cssObject.position.x = i;
+    gif_cssObject.rotation = cssObject.rotation;
+    cssScene.add(gif_cssObject);
+
+    getGyfs().then(function(gyfs) {
+
+        gif_element.src = gyfs[gif_number];
+
+    })
+
+    var ye = Math.floor(0xffffff * Math.random());
+
+    var darkMat = new THREE.MeshStandardMaterial( {color: ye} );
+    var planeGeo = new THREE.PlaneGeometry(110, 210);
+    var gif_planeMesh = new THREE.Mesh( planeGeo, darkMat );
+
+    darkMat.side = THREE.DoubleSide;
+
+    gif_planeMesh.position.x = i;
+
+    if (wall){
+
+        gif_planeMesh.position.z = 99;
+
+    } else {
+
+        gif_planeMesh.position.z = -99;
+
+    }
+
+
+    scene.add(gif_planeMesh);
 }
 
 //--------------------------------------------------------------
 
     wall(0, true, Math.floor(Math.random()*100));
     wall(0, false, Math.floor(Math.random()*100));
-let n=3;
-let dist_from_origin = 150;
+    let n=3;
+    let dist_from_origin = 150;
 
 
 for(let i = 0; i < n; ++i){
@@ -221,23 +247,23 @@ var pillar_geo = new THREE.CylinderGeometry( 10, 10, 400, 9);
 var makePillar = function( i ){
     
     
-	var ye = Math.floor(0xffffff * Math.random());
+    var ye = Math.floor(0xffffff * Math.random());
 
-	var pillar_mat = new THREE.MeshStandardMaterial( { color: ye } );
-	pillar_mat.recieveShadow = true;
+    var pillar_mat = new THREE.MeshStandardMaterial( { color: ye } );
+    pillar_mat.recieveShadow = true;
 
-	let pillar_mesh1 = new THREE.Mesh( pillar_geo, pillar_mat );
-	let pillar_mesh2 = new THREE.Mesh( pillar_geo, pillar_mat );
+    let pillar_mesh1 = new THREE.Mesh( pillar_geo, pillar_mat );
+    let pillar_mesh2 = new THREE.Mesh( pillar_geo, pillar_mat );
 
 
-	pillar_mesh1.position.z =  105;
-	pillar_mesh2.position.z = -105;
+    pillar_mesh1.position.z =  105;
+    pillar_mesh2.position.z = -105;
 
-	pillar_mesh1.position.x = 70 + i * 150;
-	pillar_mesh2.position.x = 70 + i * 150;
+    pillar_mesh1.position.x = 70 + i * 150;
+    pillar_mesh2.position.x = 70 + i * 150;
 
-	scene.add(pillar_mesh1);
-	scene.add(pillar_mesh2);
+    scene.add(pillar_mesh1);
+    scene.add(pillar_mesh2);
 
 }
 
@@ -361,11 +387,31 @@ var addColor = new THREE.Color(0x010101);
 
 var theta = 0;
 var animate = function () {
-	requestAnimationFrame( animate );
+    requestAnimationFrame( animate );
 
-	ay.add(addColor);
+    torusKnot.rotation.x += 0.03;
+    torusKnot2.rotation.x += 0.03;
 
-	if (spinToggle === true){
+    boxy.rotation.x += 0.01;
+    boxy.rotation.y += 0.01;
+
+    boxy2.rotation.x += 0.01;
+    boxy2.rotation.y += 0.01;
+
+    /*
+    torusKnot.q = 200 * Math.sin(t);
+    torusKnot.p = 200 * Math.cos(t);
+
+    torusKnot.q = 200 * Math.sin(t);
+    torusKnot.p = 200 * Math.cos(t);
+    */
+
+    weird_properties.tube = 100 * Math.sin(t) * Math.sin(t);
+    weird_properties.tube = 100 * Math.cos(t) * Math.cos(t);
+
+    ay.add(addColor);
+
+    if (spinToggle === true){
         t += 0.005;
     }
     if (forward === true){
@@ -384,24 +430,24 @@ var animate = function () {
     }
     
     camera.rotation.y = t;    
-	
-	t2 += 0.1 ;
-	
-	if ( Math.floor(t2) % 9 === 0) {
-		spotLight.color = green;
-	}
-	
-	else if ( Math.floor(t2) % 6 === 0) {
-		spotLight.color = red;
-	}
-	
-	else if ( Math.floor(t2) % 3 === 0) {
-		spotLight.color = blue;
-	}
+    
+    t2 += 0.1 ;
+    
+    if ( Math.floor(t2) % 9 === 0) {
+        spotLight.color = green;
+    }
+    
+    else if ( Math.floor(t2) % 6 === 0) {
+        spotLight.color = red;
+    }
+    
+    else if ( Math.floor(t2) % 3 === 0) {
+        spotLight.color = blue;
+    }
     
     
-	renderer.render( scene, camera );
-	cssRenderer.render( cssScene, camera );
+    renderer.render( scene, camera );
+    cssRenderer.render( cssScene, camera );
 };
 
 animate();
