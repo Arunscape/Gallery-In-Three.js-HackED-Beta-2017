@@ -1,0 +1,63 @@
+.jumbotron {
+	background-color: #455A64; /* Orange */
+	color: #ffffff;
+	text-align: center;
+	-webkit-box-shadow: 6px 5px 5px 3px #636363;
+	box-shadow: 6px 5px 5px 3px #636363;
+}
+
+.boxColumn{
+	background-color: #FF0004;
+	border-radius: 18px;
+	height: 500px;
+	margin-bottom: 54px;
+	 -webkit-transition: transform 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
+.boxColumn:hover {
+	transform: scale(1.03, 1.03);
+	-webkit-box-shadow: 3px 5px 16px 0px #2d2d2d;
+	box-shadow: 3px 5px 16px 0px #2d2d2d;
+	-moz-box-shadow: 4px 3px 8px 0px #2d2d2d;
+	-o-box-shadow: 4px 3px 8px 0px #2d2d2d;
+}
+
+.carousel-inner img {
+	width:100%;
+	height:100vh;
+}
+
+.carousel-caption {
+	font-family:Constantia, "Lucida Bright", "DejaVu Serif", Georgia, serif;
+}
+
+.carousel-caption h3 {
+	font-size: 40pt;	
+}
+
+.carousel-caption p {
+	font-size: 12pt;	
+}
+
+#button1 {
+	position:absolute;
+    top: 500px;
+    left:200px;
+    height: 50px;
+    width: 60px;
+    background-color:#FF282C;
+    cursor:pointer;
+}
+
+#button2 {
+	    position:absolute;
+    top: 500px;
+    right:200px;
+    height: 50px;
+    width: 60px;
+    background-color:#00BAC9;
+    cursor:pointer;
+}
