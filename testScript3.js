@@ -60,16 +60,21 @@ camera.position.y = 0;
 camera.position.x = 0;
 
 var t = 0.001;
-var moving = false;
+var spinToggle = false;
 
 
 var animate = function () {
 
 	requestAnimationFrame( animate );
-
-    camera.rotation.y = t;
-    renderer.render(scene, camera);
     
+    camera.rotation.y = t;
+    
+    if (spinToggle == true){
+        camera.rotation.y += 0.08;
+    }
+    
+    
+    renderer.render(scene, camera);
     
 };
    
@@ -96,6 +101,16 @@ document.addEventListener('keydown', function(event) {
     if (event.keyCode == 39) {
         t -= 0.08;
         //camera.rotation.y -= 0.0001;
+    }
+    
+    //Spacebar, toggles auto-rotate
+    if (event.keyCode == 32) {
+        if(spinToggle == false){
+            spinToggle = true;
+        }
+        if(spinToggle == true){
+            spinToggle = false;
+        }
     }
     
     //Bound the camera's z and x position to the shape of the
