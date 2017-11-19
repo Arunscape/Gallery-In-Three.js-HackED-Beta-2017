@@ -247,6 +247,61 @@ makePillar( -4 );
 
 
 //--------------------------------------------------------------
+//Spotlight object
+var spotLight = new THREE.SpotLight();
+spotLight.angle = Math.PI/6;
+scene.add(camera);
+camera.add(spotLight.target);
+
+spotLight.target.position.set(0,0,-0.5);
+scene.add(spotLight);
+//---------------------------------------------------------------
+//Control Scheme
+var t = 0.001;
+var spinToggle = false;
+
+document.addEventListener('keydown', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        camera.position.z -= Math.cos(t)*2;
+        camera.position.x -= Math.sin(t)*2;
+        //event.keyCode = 0;
+        
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        camera.position.z += Math.cos(t)*2;
+        camera.position.x += Math.sin(t)*2;
+        //event.keyCode = 0;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        t += 0.08;
+        //camera.rotation.y += 0.0001;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        t -= 0.08;
+        //camera.rotation.y -= 0.0001;
+    }
+    
+    //Spacebar, toggles auto-rotate
+    if (event.keyCode == 32) {
+        spinToggle = !spinToggle;
+        
+    }
+    
+    //Bound the camera's z and x position to the shape of the
+    //cylinder.
+    
+    //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
+    camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
+    camera.position.x = Math.min(Math.max(camera.position.x,-600),600);
+    //Math.min(Math.max(number,1),20);
+}, true);
+//------------------------------------------
+
+
 
 var t = 0;
 var t2 = 0;
@@ -257,15 +312,18 @@ var animate = function () {
 
 	requestAnimationFrame( animate );
 
-	t +=0.004;
-
-	camera.position.z = 80 * Math.sin(t);
-	camera.position.x = 80 * Math.cos(t);
-	camera.position.y = 10 * Math.cos(t);
-
 	ay.add(addColor);
 
-	camera.lookAt(cube.position);
+	if (spinToggle === true){
+        t += 0.005;
+    }
+    
+    camera.rotation.y = t;
+    
+    
+    spotLight.position.copy( camera.position );
+
+    
 
 	renderer.render( scene, camera );
 	cssRenderer.render( cssScene, camera );

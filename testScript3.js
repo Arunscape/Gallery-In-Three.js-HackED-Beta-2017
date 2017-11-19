@@ -83,15 +83,15 @@ var animate = function () {
 document.addEventListener('keydown', function(event) {
     //Forward
     if (event.keyCode == 38) {
-        camera.position.z -= Math.cos(t)*0.10;
-        camera.position.x -= Math.sin(t)*0.10;
+        camera.position.z -= Math.cos(t)*0.8;
+        camera.position.x -= Math.sin(t)*0.8;
         //event.keyCode = 0;
         
     }
     //Backwards
     if (event.keyCode == 40) {
-        camera.position.z += Math.cos(t)*0.10;
-        camera.position.x += Math.sin(t)*0.10;
+        camera.position.z += Math.cos(t)*0.8;
+        camera.position.x += Math.sin(t)*0.8;
         //event.keyCode = 0;
     }
     //Left
