@@ -283,16 +283,16 @@ for (let j = 0; j < 6; j++) {
 
 	wall_link(j * 150, true, links[j]);
 
-	wall_link(j * 150, false, links[j+1]);
+	wall_link(j * -150, false, links[j+1]);
 
 }
 
-for (let j = 6; j < 12; j++) {
+for (let k = 6; k < 12; k++) {
 
 
-	wall_link((j - 5) * -150, true, links[j]);
+	wall_link((k - 5) * -150, true, links[k]);
 
-	wall_link((j - 5) * -150, false, links[j+1]);
+	wall_link((k - 5) * +150, false, links[k+1]);
 
 }
 
