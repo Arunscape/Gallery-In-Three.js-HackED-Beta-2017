@@ -137,7 +137,7 @@ scene.add(planeMesh2);
 // })
 
 //--------------------------------------------------------------
-
+getGyfs().then(function(gyfs) {
 var wall = function(i, wall, gif_number){
 
 	var gif_element = document.createElement( 'video' );
@@ -165,11 +165,11 @@ var wall = function(i, wall, gif_number){
 	gif_cssObject.rotation = cssObject.rotation;
 	cssScene.add(gif_cssObject);
 
-	getGyfs().then(function(gyfs) {
+
 
 		gif_element.src = gyfs[gif_number];
 
-	})
+
 
 	var ye = Math.floor(0xffffff * Math.random());
 
@@ -207,7 +207,7 @@ wall(-300, false, 72);
 wall(300, true, 81);
 wall(-300, true, 11);
 wall(300, false, 12);
-
+})
 //--------------------------------------------------------------
 
 
