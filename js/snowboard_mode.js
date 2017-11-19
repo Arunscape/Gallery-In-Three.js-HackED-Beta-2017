@@ -6,9 +6,9 @@ var scene = new THREE.Scene();
 
 var color1 = new THREE.Color(0x99ccff);
 scene.background = color1;
-scene.fog = new THREE.Fog(0x99ccff, 1, 240);
+scene.fog = new THREE.Fog(0x99ccff, 40, 800);
 
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 300 );
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 10000 );
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -59,6 +59,7 @@ scene.add( aLight );
 var why = new THREE.Color(0x0044FF);
 var geo_yeah = new THREE.BoxGeometry(2000, 50, 200);
 var mat_yeah = new THREE.MeshBasicMaterial( {color: 0xff0000} );
+//mat_yeah.lights = true;
 mat_yeah.side = THREE.DoubleSide;
 
 var floor_mesh = new THREE.Mesh(geo_yeah, mat_yeah);
@@ -187,7 +188,7 @@ var listener = new THREE.AudioListener();
 camera.add( listener );
 var sound = new THREE.Audio( listener );
 var audioLoader = new THREE.AudioLoader();
-audioLoader.load( '/Dankski.mp3', function( buffer ) {
+audioLoader.load( '/acid.mp3', function( buffer ) {
 sound.hasPlaybackControl = true;
 sound.setBuffer( buffer );
 //sound.setLoop( true );
@@ -330,21 +331,38 @@ var makePillar = function( i ){
 
 var t = 0;
 var t2 = 0;
+var t3 = 0;
+
+var spotLight = new THREE.SpotLight();
+ 
+spotLight.intensity = 2;
+spotLight.angle = Math.PI/8;
+spotLight.distance = 500;
+spotLight.decay = 2;
+camera.add(spotLight);
+scene.add(camera);
+
+spotLight.position.set(0,0,50);
+spotLight.target = camera;
 
 var animate = function () {
 
 	requestAnimationFrame( animate );
 	
+	t3 +=0.1;
+	
+	spotLight.intensity = (1+Math.sin(t3));
+	
 	if (spinToggle === true){
         t += 0.005;
     }
     if (forward === true){
-        camera.position.z -= Math.cos(t)*1.2;
-        camera.position.x -= Math.sin(t)*1.2;
+        camera.position.z -= Math.cos(t);
+        camera.position.x -= Math.sin(t);
     }
     if (backward === true){
-        camera.position.z += Math.cos(t)*1.2;
-        camera.position.x += Math.sin(t)*1.2;
+        camera.position.z += Math.cos(t);
+        camera.position.x += Math.sin(t);
     }
     if (left === true){
         t += 0.04;

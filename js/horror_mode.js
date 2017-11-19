@@ -5,6 +5,7 @@ scene.background = color1;
 scene.fog = new THREE.Fog(0x110000, 1, 240);
 
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 300 );
+camera.rotation.y = Math.PI;
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -29,24 +30,6 @@ cssRenderer.domElement.style.top = 0;
 document.body.appendChild( cssRenderer.domElement );
 
 //--------------------------------------------------------------
-
-/*
-var bulbLight = new THREE.PointLight( 0xffaabb, 1, 200, 2 );
-var bulbGeometry = new THREE.SphereGeometry( 0.02, 2, 2 );
-bulbMat = new THREE.MeshStandardMaterial( {
-	emissive: 0xffffff,
-	emissiveIntensity: 1,
-	color: 0x000000
-});
-bulbLight.add( new THREE.Mesh( bulbGeometry, bulbMat ) );
-bulbLight.position.set( 1, 2, 0 );
-bulbLight.castShadow = true;
-scene.add( bulbLight );
-bulbLight.shadow.mapSize.width = 512;  // default
-bulbLight.shadow.mapSize.height = 512; // default
-bulbLight.shadow.camera.near = 0.5;       // default
-bulbLight.shadow.camera.far = 500      // default
-*/
 
 //--------------------------------------------------------------
 
@@ -88,7 +71,7 @@ element.width = 100;
 element.height = 100;
 // create the object3d for this element
 var cssObject = new THREE.CSS3DObject( element );
-// we reference the same position and rotation 
+// we reference the same position and rotation
 cssObject.position = cube.position;
 cssObject.position.z = -100;
 cssObject.rotation = cube.rotation;
@@ -104,11 +87,6 @@ cssRenderer.domElement.style.top = 0;
 document.body.appendChild( cssRenderer.domElement );
 
 //--------------------------------------------------------------
-
-
-
-//--------------------------------------------------------------
-
 
 
 //--------------------------------------------------------------
@@ -271,6 +249,7 @@ spotLight.position.set(0,0,50);
 spotLight.target = camera;
 
 
+
 //--------------------------------------------------------------
 //Control scheme
 
@@ -280,7 +259,7 @@ var forward = false;
 var backward = false;
 var left = false;
 var right = false;
-
+var spooked = false;
 
 document.addEventListener('keydown', function(event) {
     //Forward
@@ -303,10 +282,10 @@ document.addEventListener('keydown', function(event) {
     if (event.keyCode == 32) {
         spinToggle = !spinToggle;
     }
-    
+
     //Bound the camera's z and x position to the shape of the
     //cylinder.
-    
+
     //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
     camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
     camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
@@ -331,7 +310,26 @@ document.addEventListener('keyup', function(event) {
         right = false;
     }
 }, true);
-//---------------------------------------------------------------------
+//-----------------------------------------------------------
+//------------------------------------------
+
+/*
+//Add sound
+var listener = new THREE.AudioListener();
+camera.add( listener );
+var sound = new THREE.Audio( listener );
+var audioLoader = new THREE.AudioLoader();
+audioLoader.load( './reee.mp3', function( buffer ) {
+sound.hasPlaybackControl = true;
+sound.setBuffer( buffer );
+//sound.setLoop( true );
+sound.setVolume( 0.5 );
+sound.play();
+});
+*/
+
+//------------------------------------------
+
 
 
 
@@ -346,7 +344,7 @@ var addColor = new THREE.Color(0x010101);
 var animate = function () {
 
 	requestAnimationFrame( animate );
-    
+
     if (spinToggle === true){
         t += 0.005;
     }
@@ -364,10 +362,10 @@ var animate = function () {
     if (right === true){
         t -= 0.04;
     }
-    
-    camera.rotation.y = t;    
-	
-	
+
+    camera.rotation.y = t;
+
+
 	t3 += 0.1 * Math.random();
 	t4 += 0.1 * Math.random();
 	hT += 0.1 * Math.random();
@@ -383,8 +381,8 @@ var animate = function () {
 		aLight2.intensity = 0;
 
 	}
-	
-	
+
+
 	// erratic flicker of the flash light
 	if ( Math.floor(t4) % Math.floor(Math.random() * 5) === 0 ) {
 
@@ -397,9 +395,18 @@ var animate = function () {
 		spotLight.intensity = 0;
 
 	}
-	
+
+    var listener = new THREE.AudioListener();
+    camera.add( listener );
+
+    // create a global audio source
+    var sound = new THREE.Audio( listener );
+
+    var audioLoader = new THREE.AudioLoader();
+
 	// shake camera
-	if (Math.floor(hT) % 30 === 0 && Math.floor(hT) !== 0) {
+
+	if (Math.floor(hT) % 30 === 0 ) {
 		camera.position.z = 80 * Math.random();
 		camera.position.x = 80 * Math.random();
 		camera.position.y = 10 * Math.random();
