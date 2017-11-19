@@ -267,18 +267,27 @@ for(i=1;i<40;i++){
 
 //--------------------------------------------------------------
 //Spotlight object
-var spotLight = new THREE.SpotLight();
-spotLight.angle = Math.PI/6;
-scene.add(camera);
-camera.add(spotLight.target);
+var green = new THREE.Color( 0x008000 );
+var red = new THREE.Color( 0xff0000 );
+var blue = new THREE.Color( 0x0000ff );
+var spotLight = new THREE.SpotLight(red);
 
-spotLight.target.position.set(0,0,-0.5);
-scene.add(spotLight);
+
+spotLight.intensity = 2;
+spotLight.angle = Math.PI/8;
+spotLight.distance = 500;
+spotLight.decay = 2;
+camera.add(spotLight);
+scene.add(camera);
+
+spotLight.position.set(0,0,50);
+spotLight.target = camera;
+
 //---------------------------------------------------------------
 //Control Scheme
 var t = 0.001;
 var spinToggle = false;
-
+var t = 0;
 document.addEventListener('keydown', function(event) {
     //Forward
     if (event.keyCode == 38) {
@@ -323,6 +332,8 @@ document.addEventListener('keydown', function(event) {
 
 
 var t = 0;
+
+// timer for spotlight to change color
 var t2 = 0;
 
 var addColor = new THREE.Color(0x010101);
@@ -339,8 +350,19 @@ var animate = function () {
 
     camera.rotation.y = t;
 
+	t2 += 0.1 ;
 
-    spotLight.position.copy( camera.position );
+	if ( Math.floor(t2) % 9 === 0) {
+		spotLight.color = green;
+	}
+
+	else if ( Math.floor(t2) % 6 === 0) {
+		spotLight.color = red;
+	}
+
+	else if ( Math.floor(t2) % 3 === 0) {
+		spotLight.color = blue;
+	}
 
 
 

@@ -1,6 +1,6 @@
 var scene = new THREE.Scene();
 
-var color1 = new THREE.Color(0x000000);
+var color1 = new THREE.Color(0x110000);
 scene.background = color1;
 scene.fog = new THREE.Fog(0x110000, 1, 240);
 
