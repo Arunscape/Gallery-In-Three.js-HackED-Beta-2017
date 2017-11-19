@@ -64,9 +64,14 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
+<<<<<<< HEAD
 /*
 scene.add ( cube );
 */
+=======
+//scene.add ( cube );
+
+>>>>>>> cbad2508f7928fa9474dcadecca83c76fe865154
 camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
@@ -249,13 +254,21 @@ makePillar( -4 );
 
 //--------------------------------------------------------------
 //Spotlight object
-var spotLight = new THREE.SpotLight();
-spotLight.angle = Math.PI/6;
+var green = new THREE.Color( 0x008000 );
+var red = new THREE.Color( 0xff0000 );
+var blue = new THREE.Color( 0x0000ff );
+var spotLight = new THREE.SpotLight(red);
+ 
+spotLight.intensity = 2;
+spotLight.angle = Math.PI/8;
+spotLight.distance = 500;
+spotLight.decay = 2;
+camera.add(spotLight);
 scene.add(camera);
-camera.add(spotLight.target);
 
-spotLight.target.position.set(0,0,-0.5);
-scene.add(spotLight);
+spotLight.position.set(0,0,50);
+spotLight.target = camera;
+
 //---------------------------------------------------------------
 //Control Scheme
 
@@ -362,6 +375,8 @@ document.addEventListener('keyup', function(event) {
 
 
 var t = 0;
+
+// timer for spotlight to change color
 var t2 = 0;
 
 var addColor = new THREE.Color(0x010101);
@@ -390,12 +405,23 @@ var animate = function () {
         t -= 0.04;
     }
     
-    camera.rotation.y = t;
+    camera.rotation.y = t;    
+	
+	t2 += 0.1 ;
+	
+	if ( Math.floor(t2) % 9 === 0) {
+		spotLight.color = green;
+	}
+	
+	else if ( Math.floor(t2) % 6 === 0) {
+		spotLight.color = red;
+	}
+	
+	else if ( Math.floor(t2) % 3 === 0) {
+		spotLight.color = blue;
+	}
     
-    
-    spotLight.position.copy( camera.position );
-
-    
+	
 
 	renderer.render( scene, camera );
 	cssRenderer.render( cssScene, camera );
