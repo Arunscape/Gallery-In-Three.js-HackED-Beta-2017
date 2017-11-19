@@ -60,6 +60,7 @@ camera.position.y = 0;
 camera.position.x = 0;
 
 var t = 0.001;
+var moving = false;
 
 
 var animate = function () {
@@ -68,33 +69,45 @@ var animate = function () {
 
     camera.rotation.y = t;
     renderer.render(scene, camera);
-
-    //camera.lookAt(scene.position);
+    
+    
 };
    
-    document.addEventListener('keydown', function(event) {
-        //Forward
-        if (event.keyCode == 38) {
-            camera.position.z+=0.08;
-            event.keyCode = 0;
-        }
-        //Backwards
-        if (event.keyCode == 40) {
-            camera.position.z-=0.08;
-            event.keyCode = 0;
-        }
-        //Left
-        if (event.keyCode == 37) {
-            t += 0.08;
-            //camera.rotation.y += 0.0001;
-        }
-        //Right
-        if (event.keyCode == 39) {
-            t -= 0.08;
-            //camera.rotation.y -= 0.0001;
-        }
-    }, true);
+document.addEventListener('keydown', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        camera.position.z -= Math.cos(t)*0.10;
+        camera.position.x -= Math.sin(t)*0.10;
+        //event.keyCode = 0;
+        
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        camera.position.z += Math.cos(t)*0.10;
+        camera.position.x += Math.sin(t)*0.10;
+        //event.keyCode = 0;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        t += 0.08;
+        //camera.rotation.y += 0.0001;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        t -= 0.08;
+        //camera.rotation.y -= 0.0001;
+    }
+    //Bound the camera's z and x position to the shape of the
+    //cylinder.
+    typeof camera.position.z;
+    typeof camera.position.x;
+    
+    camera.position.z = Math.min(Math.max(camera.position.z,-9),9);
+    camera.position.x = Math.min(Math.max(camera.position.x,-9),9);
+    //Math.min(Math.max(number,1),20);
+}, true);
 //camera.lookAt(cylinder.position);
+
 animate();
 /*
  document.addEventListener('keydown', function(event) {
