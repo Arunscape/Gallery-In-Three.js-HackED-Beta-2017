@@ -64,14 +64,10 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
-<<<<<<< HEAD
 /*
 scene.add ( cube );
 */
-=======
-//scene.add ( cube );
 
->>>>>>> cbad2508f7928fa9474dcadecca83c76fe865154
 camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
@@ -382,7 +378,6 @@ var t2 = 0;
 var addColor = new THREE.Color(0x010101);
 
 var animate = function () {
-    console.log(camera.position.x);
 	requestAnimationFrame( animate );
 
 	ay.add(addColor);
