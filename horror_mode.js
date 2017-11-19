@@ -116,7 +116,7 @@ var wall_link = function(i, wall, gifLink){
 
 	gif_cssObject.position.x = i;
 	gif_cssObject.rotation = cssObject.rotation;
-	cssScene.add(gif_cssObject);
+	//cssScene.add(gif_cssObject);
 
 
 	gif_element.src = gifLink;
