@@ -145,7 +145,20 @@ var wall = function(i, wall, gif_number){
 	gif_element.height = 100;
 	var gif_cssObject = new THREE.CSS3DObject( gif_element );
 	gif_cssObject.position = cssObject.position;
-	gif_cssObject.position.z = 100;
+
+
+	if (wall){
+
+		gif_cssObject.position.z = 100;
+
+	} else {
+
+		gif_cssObject.position.z = -100;
+
+	}
+
+
+
 	gif_cssObject.position.x = i;
 	gif_cssObject.rotation = cssObject.rotation;
 	cssScene.add(gif_cssObject);
@@ -164,14 +177,30 @@ var wall = function(i, wall, gif_number){
 
 	gif_planeMesh.position.x = i;
 
-	gif_planeMesh.position.z = 99
+	if (wall){
+
+		gif_planeMesh.position.z = 99;
+
+	} else {
+
+		gif_planeMesh.position.z = -99;
+
+	}
+
+
 	scene.add(gif_planeMesh);
 }
 
 //--------------------------------------------------------------
 
-wall(-150, true, 30);
+wall(-150, false, 30);
 wall(150, true, 40);
+wall(-150, true, 32);
+wall(150, false, 23);
+wall(-300, false, 72);
+wall(300, true, 81);
+wall(-300, true, 11);
+wall(300, false, 12);
 
 var t = 0;
 
