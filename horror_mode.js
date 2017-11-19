@@ -30,24 +30,6 @@ document.body.appendChild( cssRenderer.domElement );
 
 //--------------------------------------------------------------
 
-/*
-var bulbLight = new THREE.PointLight( 0xffaabb, 1, 200, 2 );
-var bulbGeometry = new THREE.SphereGeometry( 0.02, 2, 2 );
-bulbMat = new THREE.MeshStandardMaterial( {
-	emissive: 0xffffff,
-	emissiveIntensity: 1,
-	color: 0x000000
-});
-bulbLight.add( new THREE.Mesh( bulbGeometry, bulbMat ) );
-bulbLight.position.set( 1, 2, 0 );
-bulbLight.castShadow = true;
-scene.add( bulbLight );
-bulbLight.shadow.mapSize.width = 512;  // default
-bulbLight.shadow.mapSize.height = 512; // default
-bulbLight.shadow.camera.near = 0.5;       // default
-bulbLight.shadow.camera.far = 500      // default
-*/
-
 //--------------------------------------------------------------
 
 var ay = new THREE.Color(0xffffff);
@@ -104,11 +86,6 @@ cssRenderer.domElement.style.top = 0;
 document.body.appendChild( cssRenderer.domElement );
 
 //--------------------------------------------------------------
-
-
-
-//--------------------------------------------------------------
-
 
 
 //--------------------------------------------------------------
@@ -270,6 +247,25 @@ scene.add(camera);
 spotLight.position.set(0,0,50);
 spotLight.target = camera;
 
+
+//--------------------------------------------------------------
+//Adds sound
+//Create an AudioListener and add it to the camera
+var listener = new THREE.AudioListener();
+camera.add( listener );
+
+// create a global audio source
+var sound = new THREE.Audio( listener );
+
+var audioLoader = new THREE.AudioLoader();
+
+//Load a sound and set it as the Audio object's buffer
+audioLoader.load( '/reee.mp3', function( buffer ) {
+	sound.setBuffer( buffer );
+	sound.setLoop( true );
+	sound.setVolume( 0.5 );
+	sound.play();
+});
 
 //--------------------------------------------------------------
 //Control scheme
