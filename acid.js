@@ -397,10 +397,14 @@ var t = 0;
 // timer for spotlight to change color
 var t2 = 0;
 
+var gT = 0;
+
 var addColor = new THREE.Color(0x010101);
 
 var animate = function () {
 	requestAnimationFrame( animate );
+
+	gT += 0.04;
 
 	ay.add(addColor);
 
@@ -422,7 +426,10 @@ var animate = function () {
         t -= 0.04;
     }
 
-    camera.rotation.y = t;
+
+		camera.rotation.x = Math.cos(gT)*0.5;
+    camera.rotation.y = t + Math.sin(gT)*0.5;
+
 
 	t2 += 0.1 ;
 
