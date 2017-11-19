@@ -5,6 +5,7 @@ scene.background = color1;
 scene.fog = new THREE.Fog(0x110000, 1, 240);
 
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 300 );
+camera.rotation.y = Math.PI;
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -248,24 +249,6 @@ spotLight.position.set(0,0,50);
 spotLight.target = camera;
 
 
-//--------------------------------------------------------------
-//Adds sound
-//Create an AudioListener and add it to the camera
-var listener = new THREE.AudioListener();
-camera.add( listener );
-
-// create a global audio source
-var sound = new THREE.Audio( listener );
-
-var audioLoader = new THREE.AudioLoader();
-
-//Load a sound and set it as the Audio object's buffer
-audioLoader.load( '/reee.mp3', function( buffer ) {
-	sound.setBuffer( buffer );
-	//sound.setLoop( true );
-	sound.setVolume( 1 );
-	sound.play();
-});
 
 //--------------------------------------------------------------
 //Control scheme
@@ -276,7 +259,7 @@ var forward = false;
 var backward = false;
 var left = false;
 var right = false;
-
+var spooked = false;
 
 document.addEventListener('keydown', function(event) {
     //Forward
@@ -394,11 +377,31 @@ var animate = function () {
 
 	}
 	
+    var listener = new THREE.AudioListener();
+    camera.add( listener );
+    
+    // create a global audio source
+    var sound = new THREE.Audio( listener );
+
+    var audioLoader = new THREE.AudioLoader();
+
 	// shake camera
+    
 	if (Math.floor(hT) % 30 === 0 ) {
 		camera.position.z = 80 * Math.random();
 		camera.position.x = 80 * Math.random();
 		camera.position.y = 10 * Math.random();
+        if (spooked == false){
+            spooked = true;
+
+            audioLoader.load( '/reee.mp3', function( buffer ) {
+            sound.hasPlaybackControl = true;
+            sound.setBuffer( buffer );
+            //sound.setLoop( true );
+            sound.setVolume( 1 );
+            sound.play();
+            }); 
+        }
 	}
 
 	ay.add(addColor);
