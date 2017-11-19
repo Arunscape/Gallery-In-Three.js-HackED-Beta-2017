@@ -97,16 +97,15 @@ document.addEventListener('keydown', function(event) {
         t -= 0.08;
         //camera.rotation.y -= 0.0001;
     }
+    
     //Bound the camera's z and x position to the shape of the
     //cylinder.
-    typeof camera.position.z;
-    typeof camera.position.x;
     
-    camera.position.z = Math.min(Math.max(camera.position.z,-9),9);
-    camera.position.x = Math.min(Math.max(camera.position.x,-9),9);
+    //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
+    camera.position.z = Math.min(Math.max(camera.position.z,-8),8);
+    camera.position.x = Math.min(Math.max(camera.position.x,-8),8);
     //Math.min(Math.max(number,1),20);
 }, true);
-//camera.lookAt(cylinder.position);
 
 animate();
 /*
