@@ -193,14 +193,17 @@ var wall = function(i, wall, gif_number){
 
 //--------------------------------------------------------------
 
-wall(-150, false, 30);
-wall(150, true, 40);
-wall(-150, true, 32);
-wall(150, false, 23);
-wall(-300, false, 72);
-wall(300, true, 81);
-wall(-300, true, 11);
-wall(300, false, 12);
+let n=2;
+let dist_from_origin = 0;
+
+
+for(let i = 0; i < n; ++i){
+    wall(dist_from_origin, true, Math.floor(Math.random()*100));
+    wall(-dist_from_origin, true, Math.floor(Math.random()*100));
+    wall(dist_from_origin, false, Math.floor(Math.random()*100));
+    wall(-dist_from_origin, false,Math.floor(Math.random()*100));
+    dist_from_origin+=150;
+}
 
 var t = 0;
 

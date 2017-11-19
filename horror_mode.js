@@ -410,7 +410,6 @@ var animate = function () {
 		camera.position.y = 10 * Math.random();
         if (spooked == false){
             spooked = true;
-
             audioLoader.load( '/reee.mp3', function( buffer ) {
             sound.hasPlaybackControl = true;
             sound.setBuffer( buffer );

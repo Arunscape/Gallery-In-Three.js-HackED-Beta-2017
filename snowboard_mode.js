@@ -187,7 +187,7 @@ var listener = new THREE.AudioListener();
 camera.add( listener );
 var sound = new THREE.Audio( listener );
 var audioLoader = new THREE.AudioLoader();
-audioLoader.load( '/acid.mp3', function( buffer ) {
+audioLoader.load( '/Dankski.mp3', function( buffer ) {
 sound.hasPlaybackControl = true;
 sound.setBuffer( buffer );
 //sound.setLoop( true );
@@ -330,27 +330,10 @@ var makePillar = function( i ){
 
 var t = 0;
 var t2 = 0;
-var t3 = 0;
-
-var spotLight = new THREE.SpotLight();
- 
-spotLight.intensity = 2;
-spotLight.angle = Math.PI/8;
-spotLight.distance = 500;
-spotLight.decay = 2;
-camera.add(spotLight);
-scene.add(camera);
-
-spotLight.position.set(0,0,50);
-spotLight.target = camera;
 
 var animate = function () {
 
 	requestAnimationFrame( animate );
-	
-	t3 +=0.1;
-	
-	spotLight.intensity = (1+Math.sin(t3));
 	
 	if (spinToggle === true){
         t += 0.005;
