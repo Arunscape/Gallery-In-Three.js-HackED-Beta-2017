@@ -50,7 +50,7 @@ scene.add( aLight );
 
 //--------------------------------------------------------------
 
-var geo = new THREE.BoxGeometry( 2000, 200, 200);
+var geo = new THREE.BoxGeometry( 1200, 200, 200);
 var mat = new THREE.MeshStandardMaterial( {color: 0xffffff} );
 mat.side = THREE.DoubleSide;
 var cylinder = new THREE.Mesh( geo, mat );
@@ -64,8 +64,18 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
+<<<<<<< HEAD
 // scene.add ( cube );
+=======
+<<<<<<< HEAD
+/*
+scene.add ( cube );
+*/
+=======
+//scene.add ( cube );
+>>>>>>> 6b513acb0c1f26d5a061db42b2a6802eb73a366a
 
+>>>>>>> cbad2508f7928fa9474dcadecca83c76fe865154
 camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
@@ -285,38 +295,89 @@ spotLight.target = camera;
 
 //---------------------------------------------------------------
 //Control Scheme
+
 var t = 0.001;
+
+/*
+Mousetrap.bind('up',function(){
+    forward = true;
+},onkeydown);
+Mousetrap.bind('up',function(){
+    forward = false;
+},onkeyup);
+
+Mousetrap.bind('down',function(){
+    backward = true;
+},onkeypress);
+Mousetrap.bind('down',function(){
+    backward = false;
+},onkeyup);
+
+Mousetrap.bind('left',function(){
+    left = true;
+},onkeydown);
+Mousetrap.bind('left',function(){
+    left = false;
+},onkeyup);
+
+Mousetrap.bind('right',function(){
+    right = true;
+},onkeydown);
+Mousetrap.bind('right',function(){
+    right = false;
+},onkeyup);
+
+Mousetrap.bind('space',function(){
+    spinToggle = !spinToggle;
+})
+
+Mousetrap.bind('up',function(){
+
+},onkeyup)
+*/
+
 var spinToggle = false;
-var t = 0;
+var forward = false;
+var backward = false;
+var left = false;
+var right = false;
+
+
 document.addEventListener('keydown', function(event) {
     //Forward
     if (event.keyCode == 38) {
+<<<<<<< HEAD
         camera.position.z -= Math.cos(t)*2;
         camera.position.x -= Math.sin(t)*2;
         //event.keyCode = 0;
 
+=======
+        forward = true;
+>>>>>>> 6b513acb0c1f26d5a061db42b2a6802eb73a366a
     }
     //Backwards
     if (event.keyCode == 40) {
-        camera.position.z += Math.cos(t)*2;
-        camera.position.x += Math.sin(t)*2;
-        //event.keyCode = 0;
+        backward = true;
     }
     //Left
     if (event.keyCode == 37) {
-        t += 0.08;
-        //camera.rotation.y += 0.0001;
+        left = true;
     }
     //Right
     if (event.keyCode == 39) {
-        t -= 0.08;
-        //camera.rotation.y -= 0.0001;
+        right = true;
     }
+<<<<<<< HEAD
 
     //Spacebar, toggles auto-rotate
     if (event.keyCode == 32) {
         spinToggle = !spinToggle;
 
+=======
+    //Spacebar, toggles auto-rotate
+    if (event.keyCode == 32) {
+        spinToggle = !spinToggle;
+>>>>>>> 6b513acb0c1f26d5a061db42b2a6802eb73a366a
     }
 
     //Bound the camera's z and x position to the shape of the
@@ -324,9 +385,30 @@ document.addEventListener('keydown', function(event) {
 
     //NOTE: Dispite the cylinder having a radius of 10, the bounds must be smaller to prevent the camera clipping. Alternative mathod would be to change camera clip distance, but this could have unforseen consequences.
     camera.position.z = Math.min(Math.max(camera.position.z,-40),40);
-    camera.position.x = Math.min(Math.max(camera.position.x,-600),600);
+    camera.position.x = Math.min(Math.max(camera.position.x,-580),580);
     //Math.min(Math.max(number,1),20);
 }, true);
+
+document.addEventListener('keyup', function(event) {
+    //Forward
+    if (event.keyCode == 38) {
+        forward = false;
+    }
+    //Backwards
+    if (event.keyCode == 40) {
+        backward = false;
+    }
+    //Left
+    if (event.keyCode == 37) {
+        left = false;
+    }
+    //Right
+    if (event.keyCode == 39) {
+        right = false;
+    }
+}, true);
+
+
 //------------------------------------------
 
 
@@ -339,13 +421,44 @@ var t2 = 0;
 var addColor = new THREE.Color(0x010101);
 
 var animate = function () {
-
+    console.log(camera.position.x);
 	requestAnimationFrame( animate );
 
 	ay.add(addColor);
 
 	if (spinToggle === true){
         t += 0.005;
+    }
+<<<<<<< HEAD
+
+    camera.rotation.y = t;
+
+	t2 += 0.1 ;
+
+	if ( Math.floor(t2) % 9 === 0) {
+		spotLight.color = green;
+	}
+
+	else if ( Math.floor(t2) % 6 === 0) {
+		spotLight.color = red;
+	}
+
+	else if ( Math.floor(t2) % 3 === 0) {
+		spotLight.color = blue;
+=======
+    if (forward === true){
+        camera.position.z -= Math.cos(t)*1.2;
+        camera.position.x -= Math.sin(t)*1.2;
+    }
+    if (backward === true){
+        camera.position.z += Math.cos(t)*1.2;
+        camera.position.x += Math.sin(t)*1.2;
+    }
+    if (left === true){
+        t += 0.04;
+    }
+    if (right === true){
+        t -= 0.04;
     }
 
     camera.rotation.y = t;
@@ -362,6 +475,7 @@ var animate = function () {
 
 	else if ( Math.floor(t2) % 3 === 0) {
 		spotLight.color = blue;
+>>>>>>> 6b513acb0c1f26d5a061db42b2a6802eb73a366a
 	}
 
 
