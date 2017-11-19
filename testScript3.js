@@ -59,43 +59,41 @@ camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
 
-var t = 0;
+var t = 0.001;
 
 
 var animate = function () {
 
 	requestAnimationFrame( animate );
-/*
-	t +=0.004;
-	camera.position.z = 4 * Math.sin(t);
-	camera.position.x = 4 * Math.cos(t);
-	camera.position.y = 2 * Math.cos(t);
-*/
-	//camera.lookAt(cylinder.position);
-    //camera.position.x+=0.04;
-	renderer.render(scene, camera);
-    //TODO: fix input "lag"
-    document.addEventListener('keypress', function(event) {
-        //Forward
-        if (event.keyCode == 38) {
-            camera.position.z-=0.001;
-        }
-        //Backwards
-        else if (event.keyCode == 40) {
-            camera.position.z+=0.001;
-        }
-        //Left
-        else if (event.keyCode == 40) {
-            camera.rotation.y+=0.001;
-        }
-        //Right
-        else if (event.keyCode == 40) {
-            camera.position.z+=0.001;
-        }
-    }, true);
-    
+
+    camera.rotation.y = t;
+    renderer.render(scene, camera);
+
+    //camera.lookAt(scene.position);
 };
    
+    document.addEventListener('keydown', function(event) {
+        //Forward
+        if (event.keyCode == 38) {
+            camera.position.z+=0.08;
+            event.keyCode = 0;
+        }
+        //Backwards
+        if (event.keyCode == 40) {
+            camera.position.z-=0.08;
+            event.keyCode = 0;
+        }
+        //Left
+        if (event.keyCode == 37) {
+            t += 0.08;
+            //camera.rotation.y += 0.0001;
+        }
+        //Right
+        if (event.keyCode == 39) {
+            t -= 0.08;
+            //camera.rotation.y -= 0.0001;
+        }
+    }, true);
 //camera.lookAt(cylinder.position);
 animate();
 /*
