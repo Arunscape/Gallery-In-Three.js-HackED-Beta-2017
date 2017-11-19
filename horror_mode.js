@@ -71,7 +71,7 @@ var mat2 = new THREE.MeshStandardMaterial( {color:0xf4f4f4} );
 var cube = new THREE.Mesh( geo2, mat2 );
 cube.castShadow = true;
 cube.receiveShadow = true;
-scene.add ( cube );
+//scene.add ( cube );
 
 camera.position.z = -3;
 camera.position.y = 0;
@@ -339,6 +339,7 @@ document.addEventListener('keyup', function(event) {
 var t2 = 0;
 var t3 = 0;
 var t4 = 0;
+var hT = 0;
 
 var addColor = new THREE.Color(0x010101);
 
@@ -369,6 +370,7 @@ var animate = function () {
 	
 	t3 += 0.1 * Math.random();
 	t4 += 0.1 * Math.random();
+	hT += 0.1 * Math.random();
 
 	if ( Math.floor(t3) % 10 === 0 ) {
 
@@ -394,6 +396,13 @@ var animate = function () {
 
 		spotLight.intensity = 0;
 
+	}
+	
+	// shake camera
+	if (Math.floor(hT) % 30 === 0 ) {
+		camera.position.z = 80 * Math.random();
+		camera.position.x = 80 * Math.random();
+		camera.position.y = 10 * Math.random();
 	}
 
 	ay.add(addColor);
