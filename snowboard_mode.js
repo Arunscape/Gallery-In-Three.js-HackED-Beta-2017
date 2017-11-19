@@ -191,7 +191,7 @@ var listener = new THREE.AudioListener();
 camera.add( listener );
 var sound = new THREE.Audio( listener );
 var audioLoader = new THREE.AudioLoader();
-audioLoader.load( '/acid.mp3', function( buffer ) {
+audioLoader.load( '/Dankski.mp3', function( buffer ) {
 sound.hasPlaybackControl = true;
 sound.setBuffer( buffer );
 //sound.setLoop( true );
