@@ -65,14 +65,48 @@ var t = 0;
 var animate = function () {
 
 	requestAnimationFrame( animate );
-
+/*
 	t +=0.004;
 	camera.position.z = 4 * Math.sin(t);
 	camera.position.x = 4 * Math.cos(t);
 	camera.position.y = 2 * Math.cos(t);
-	camera.lookAt(cylinder.position);
-
+*/
+	//camera.lookAt(cylinder.position);
+    //camera.position.x+=0.04;
 	renderer.render(scene, camera);
+    //TODO: fix input "lag"
+    document.addEventListener('keypress', function(event) {
+        //Forward
+        if (event.keyCode == 38) {
+            camera.position.z-=0.001;
+        }
+        //Backwards
+        else if (event.keyCode == 40) {
+            camera.position.z+=0.001;
+        }
+        //Left
+        else if (event.keyCode == 40) {
+            camera.rotation.y+=0.001;
+        }
+        //Right
+        else if (event.keyCode == 40) {
+            camera.position.z+=0.001;
+        }
+    }, true);
+    
 };
-
+   
+//camera.lookAt(cylinder.position);
 animate();
+/*
+ document.addEventListener('keydown', function(event) {
+        if (event.keyCode == 37) {
+            alert('Left was pressed');
+        }
+        else if (event.keyCode == 39) {
+            alert('Right was pressed');
+        }
+    }, true);
+    
+};
+*/
