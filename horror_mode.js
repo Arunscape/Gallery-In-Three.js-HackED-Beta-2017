@@ -42,6 +42,7 @@ bulbLight.add( new THREE.Mesh( bulbGeometry, bulbMat ) );
 bulbLight.position.set( 1, 2, 0 );
 bulbLight.castShadow = true;
 scene.add( bulbLight );
+
 bulbLight.shadow.mapSize.width = 512;  // default
 bulbLight.shadow.mapSize.height = 512; // default
 bulbLight.shadow.camera.near = 0.5;       // default
@@ -255,20 +256,7 @@ var makePillar = function( i ){
 	scene.add(pillar_mesh2);
 
 }
-//--------------------------------------------------------------
 
-//green flash light
-
-spotLight = new THREE.SpotLight(0x638059);
-spotLight.intensity = 3;
-spotLight.angle = Math.PI/8;
-spotLight.distance = 1200;
-spotLight.decay = 1;
-camera.add(spotLight);
-scene.add(camera);
-
-spotLight.position.set(0,0,50);
-spotLight.target = camera;
 
 
 //--------------------------------------------------------------
@@ -276,7 +264,6 @@ spotLight.target = camera;
 var t = 0;
 var t2 = 0;
 var t3 = 0;
-var t4 = 0;
 
 var addColor = new THREE.Color(0x010101);
 
@@ -291,7 +278,6 @@ var animate = function () {
 	camera.position.y = 10 * Math.cos(t);
 
 	t3 += 0.1 * Math.random();
-	t4 += 0.1 * Math.random();
 
 	if ( Math.floor(t3) % 10 === 0 ) {
 
@@ -302,20 +288,6 @@ var animate = function () {
 	else {
 
 		aLight2.intensity = 0;
-
-	}
-	
-	
-	// erratic flicker of the flash light
-	if ( Math.floor(t4) % Math.floor(Math.random() * 5) === 0 ) {
-
-		spotLight.intensity = 3;
-
-	}
-
-	else if ( Math.floor(t4) % Math.floor(Math.random() * 3) === 0 ) {
-
-		spotLight.intensity = 0;
 
 	}
 
