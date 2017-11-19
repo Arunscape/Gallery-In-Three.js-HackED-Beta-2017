@@ -59,35 +59,52 @@ camera.position.z = -3;
 camera.position.y = 0;
 camera.position.x = 0;
 
-var t = 0;
+var t = 0.001;
 
 
 var animate = function () {
 
 	requestAnimationFrame( animate );
 
+<<<<<<< HEAD
 	renderer.render(scene, camera);
     //TODO: fix input "lag"
+=======
+    camera.rotation.y = t;
+    renderer.render(scene, camera);
+
+    //camera.lookAt(scene.position);
+};
+   
+>>>>>>> Chris
     document.addEventListener('keydown', function(event) {
         //Forward
         if (event.keyCode == 38) {
-            camera.position.z-=0.001;
+            camera.position.z+=0.08;
+            event.keyCode = 0;
         }
         //Backwards
-        else if (event.keyCode == 40) {
-            camera.position.z+=0.001;
+        if (event.keyCode == 40) {
+            camera.position.z-=0.08;
+            event.keyCode = 0;
         }
         //Left
-        else if (event.keyCode == 40) {
-            camera.rotation.y+=0.001;
+        if (event.keyCode == 37) {
+            t += 0.08;
+            //camera.rotation.y += 0.0001;
         }
         //Right
-        else if (event.keyCode == 40) {
-            camera.position.z+=0.001;
+        if (event.keyCode == 39) {
+            t -= 0.08;
+            //camera.rotation.y -= 0.0001;
         }
     }, true);
+<<<<<<< HEAD
 	 camera.position.z = Math.min(Math.max(parseInt(number), -10), 10);
     
 };
    
+=======
+//camera.lookAt(cylinder.position);
+>>>>>>> Chris
 animate();
