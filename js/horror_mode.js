@@ -240,8 +240,8 @@ var makePillar = function( i ){
 spotLight = new THREE.SpotLight(0x638059);
 spotLight.intensity = 3;
 spotLight.angle = Math.PI/8;
-spotLight.distance = 1200;
-spotLight.decay = 1;
+spotLight.distance = 2000;
+spotLight.decay = 2;
 camera.add(spotLight);
 scene.add(camera);
 
@@ -340,6 +340,8 @@ var t4 = 0;
 var hT = 0;
 
 var addColor = new THREE.Color(0x010101);
+var red = new THREE.Color( 0x7a0000 );
+var white = new THREE.Color( 0xffffff);
 
 var animate = function () {
 
@@ -406,10 +408,17 @@ var animate = function () {
 
 	// shake camera
 
-	if (Math.floor(hT) % 30 === 0 ) {
+	if (Math.floor(hT) % 30 === 0 && Math.floor(hT) !== 0) {
 		camera.position.z = 80 * Math.random();
 		camera.position.x = 80 * Math.random();
 		camera.position.y = 10 * Math.random();
+		aLight2.intensity = 3;
+		aLight2.color = red;
+	}
+	
+	else {
+		aLight2.intensity = 0;
+		aLight2.color = white;
 	}
 
 	ay.add(addColor);
