@@ -54,7 +54,7 @@ Use the arrow keys on your keyboard to move
 
  <img src="/images/arrowkeys.png" width="200">
 
-Pressing the spacebar will #TODO
+Pressing the spacebar will toggle the camera automatically rotating slowly on all modes, except for the "full" Acid Mode
 
 
 ## Our Backstory:
