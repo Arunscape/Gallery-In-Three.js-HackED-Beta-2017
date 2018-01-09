@@ -25,17 +25,17 @@ The most basic of the three modes, has snowboarding GIFs.
 
 ![preview of Snowboard Mode](/images/snowboardmode.PNG)
 
-### [Acid Mode](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/acid.html)
-We don't know what tripping on acid would feel like, but this felt weird enough.
+### [Party Mode](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/party.html)
+We don't know what social interaction would feel like, but this felt good enough.
 
 Features:
 - GIFs randomly loaded from gfycat's top 100 [trending GIFs](https://gfycat.com/gifs/tag/Trending)
 - Lights that change colour
 - Wobbly Camera
 
-![preview of Acid Mode](/images/acidmode.PNG)
+![preview of Party Mode](/images/partymode.PNG)
 
-###### Note: Acid Mode can be resource intensive (taxes bandwidth and CPU), so we also made a more [lightweight version](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/acidSmall.html) which loads fewer GIFs,
+###### Note: Party Mode can be resource intensive (taxes bandwidth and CPU), so we also made a more [lightweight version](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/partySmall.html) which loads fewer GIFs,
 
 ### [Horror Mode](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/horror_mode.html)
 Okay, maybe this isn't actually scary but it definitely looks cool.
@@ -47,14 +47,14 @@ Features:
 ![preview of Horror Mode](/images/horrormode.PNG)
 
  ---
- ###### Note: All GIFs are loaded from [gfycat](https://gfycat.com/). Acid mode uses gfycat's API to fetch 100 top trending GIFs as links in a JSON object, then randomly selects GIFs to display. This functionality could easily have also been implemented in Snowboard Mode and Horror Mode as well, but it was more of a proof of concept. We wanted to focus on improving the other modes once Acid Mode was finalized, so the GIFs in Snowboard and Horror Mode are just direct links.
+ ###### Note: All GIFs are loaded from [gfycat](https://gfycat.com/). Party mode uses gfycat's API to fetch 100 top trending GIFs as links in a JSON object, then randomly selects GIFs to display. This functionality could easily have also been implemented in Snowboard Mode and Horror Mode as well, but it was more of a proof of concept. We wanted to focus on improving the other modes once Party Mode was finalized, so the GIFs in Snowboard and Horror Mode are just direct links.
 
 ## Controls:
 Use the arrow keys on your keyboard to move
 
  <img src="/images/arrowkeys.png" width="200">
 
-Pressing the spacebar will toggle the camera automatically rotating slowly on all modes, except for the "full" Acid Mode
+Pressing the spacebar will toggle the camera automatically rotating slowly on all modes, except for the "full" Party Mode
 
 
 ## Our Backstory:
