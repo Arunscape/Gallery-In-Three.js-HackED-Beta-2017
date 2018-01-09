@@ -35,7 +35,7 @@ Features:
 
 ![preview of Acid Mode](/images/acidmode.PNG)
 
-###### Note: Acid Mode can be resource intensive (taxes bandwidth and CPU), so we also made a more lightweight version which loads fewer GIFs,
+###### Note: Acid Mode can be resource intensive (taxes bandwidth and CPU), so we also made a more [lightweight version](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/acidSmall.html) which loads fewer GIFs,
 
 ### [Horror Mode](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/horror_mode.html)
 Okay, maybe this isn't actually scary but it definitely looks cool.
