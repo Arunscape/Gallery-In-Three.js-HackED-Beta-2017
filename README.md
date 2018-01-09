@@ -50,7 +50,8 @@ Features:
  ###### Note: All GIFs are loaded from [gfycat](https://gfycat.com/). Acid mode uses gfycat's API to fetch 100 top trending GIFs as links in a JSON object, then randomly selects GIFs to display. This functionality could easily have also been implemented in Snowboard Mode and Horror Mode as well, but it was more of a proof of concept. We wanted to focus on improving the other modes once Acid Mode was finalized, so the GIFs in Snowboard and Horror Mode are just direct links.
 
 ## Controls:
-Use the arrow keys on your keyboard to move <img src="/images/arrowkeys.png" width="200">
+Use the arrow keys on your keyboard to move
+ <img src="/images/arrowkeys.png" width="200">
 
 Pressing the spacebar will #TODO
 
