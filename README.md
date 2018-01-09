@@ -23,7 +23,7 @@ Gallery in Three.js is a 3-D gallery app made in  [Three.js](https://threejs.org
 ### [Snowboard Mode](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/snowboard.html)
 The most basic of the three modes, has snowboarding GIFs.
 
-![preview of Snowboard Mode]()
+![preview of Snowboard Mode](/images/snowboardmode.PNG)
 
 ### [Acid Mode](https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/acid.html)
 We don't know what tripping on acid would feel like, but this felt weird enough.
@@ -33,7 +33,7 @@ Features:
 - Lights that change colour
 - Wobbly Camera
 
-![preview of Acid Mode]()
+![preview of Acid Mode](/images/acidmode.PNG)
 
 ###### Note: Acid Mode can be resource intensive (taxes bandwidth and CPU), so we also made a more lightweight version which loads fewer GIFs,
 
@@ -44,7 +44,7 @@ Features:
 - Flashing lights
 - Random Teleportation
 
-![preview of Horror Mode]()
+![preview of Horror Mode](/images/horrormode.PNG)
 
  ---
  ###### Note: All GIFs are loaded from [gfycat](https://gfycat.com/). Acid mode uses gfycat's API to fetch 100 top trending GIFs as links in a JSON object, then randomly selects GIFs to display. This functionality could easily have also been implemented in Snowboard Mode and Horror Mode as well, but it was more of a proof of concept. We wanted to focus on improving the other modes once Acid Mode was finalized, so the GIFs in Snowboard and Horror Mode are just direct links.
