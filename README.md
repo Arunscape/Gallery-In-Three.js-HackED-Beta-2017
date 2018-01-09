@@ -51,6 +51,7 @@ Features:
 
 ## Controls:
 Use the arrow keys on your keyboard to move
+
  <img src="/images/arrowkeys.png" width="200">
 
 Pressing the spacebar will #TODO
