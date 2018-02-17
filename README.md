@@ -10,11 +10,11 @@ https://arunscape.github.io/Gallery-In-Three.js-HackED-Beta-2017/
 
 ---
 #### Project contributors:
-* Arun Woosaree
-* Tamara Bojovic
-* Christian Lo
-* Amir Shukayev
-* Pranavkumar Bodawala  
+* [Arun Woosaree](https://github.com/Arunscape/)
+* [Tamara Bojovic](https://github.com/bojotamara/)
+* [Christian Lo](https://github.com/ChrisChrisLoLo)
+* [Amir Shukayev](https://github.com/amirshukayev)
+* [Pranavkumar Bodawala](https://github.com/PranavB6)  
 ---
 
 ## What it does:
